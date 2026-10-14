@@ -1,0 +1,33 @@
+name: Basic pipeline
+
+# Events that automatically start the pipeline
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+# Permissions granted to the workflow
+permissions:
+  contents: read
+
+
+jobs:
+  basic-checks:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # Check that at least one project file exists
+      - name: Check repository files
+        run: |
+          echo "Checking that repository contains files..."
+
+          test -n "$(find . -type f \
+            -not -path './.git/*' \
+            -not -path './.github/*' \
+            -print -quit)"
+
+          echo "Repository files found."

@@ -1,4 +1,13 @@
 import React from "react";
+import Navbar from "./components/Navbar";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+} from "react-router-dom";
+// import Eclipses from "./pages/eclipses";
+// import Quadratures from "./pages/eclipses";
+
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import {useState} from "react";

@@ -130,7 +130,7 @@ tr.currentyear {
 }
 
 td.seasontime, td.quartertime { 
-    text-align: right; 
+    text-align: center;
 }
 
 td.style2 {

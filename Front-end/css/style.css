@@ -18,7 +18,7 @@ body {
 
 /* Lehespetsiifilised laiused */
 body.seasons-body { max-width: 700px; min-width: 250px; }
-body.moon-body { max-width: 600px; min-width: 220px; }
+body.moon-body, body.apsides-body { max-width: 600px; min-width: 220px; }
 
 svg {
     display: block;
@@ -26,8 +26,8 @@ svg {
 }
 
 /* Kursorile reageerivad elemendid */
-.hoverblock { 
-    background-color: var(--bgcolor); 
+.hoverblock {
+    background-color: var(--bgcolor);
     display: flex;
     flex-grow: 1;
 }
@@ -40,22 +40,24 @@ svg {
     -ms-user-select: none;
 }
 
-.hoverblock:active, input:active, select:active { 
-    filter: brightness(2); 
+.hoverblock:active, input:active, select:active {
+    filter: brightness(2);
 }
 
 /* Päised ja navigeerimine */
-#seasons_head, #moonphase_head {
+#seasons_head, #moonphase_head, #apsides_head {
     width: 100%;
     display: flex;
 }
 
+#apsides_head .hoverblock:first-child,
 #seasons_head .hoverblock:first-child,
 #moonphase_head .hoverblock:first-child {
     padding: 10px;
     border-top-left-radius: 20px;
 }
 
+#apsides_head .hoverblock:last-child,
 #seasons_head .hoverblock:last-child,
 #moonphase_head .hoverblock:last-child {
     padding: 10px;
@@ -82,10 +84,14 @@ input, select {
 }
 
 /* Sisendite laiused */
-#seasons_startyear, #seasons_endyear { width: 55px; }
-#moonphase_year { width: 60px; }
+#seasons_startyear, #seasons_endyear, #apsides_startyear, #apsides_endyear {
+    width: 55px;
+}
+#moonphase_year {
+    width: 60px;
+}
 
-#seasons_tz, #moonphase_tz {
+#seasons_tz, #moonphase_tz, #apsides_tz {
     width: 80px;
     margin-top: 2px;
 }
@@ -97,7 +103,7 @@ input:hover, select:hover {
 }
 
 /* Sisu ja tabelid */
-#seasons_content, #moonphase_content {
+#seasons_content, #moonphase_content, #apsides_content {
     border: 10px solid var(--bgcolor);
     border-top: 5px solid var(--bgcolor);
     border-radius: 0 0 20px 20px;

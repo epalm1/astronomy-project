@@ -3,16 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>astronoomia.ee apsiidid</title>
+    <title>astronoomia.ee aastaajad</title>
 
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link rel="stylesheet" href="/Front-end/css/style.css">
 </head>
 
-<body class="apsides-body" onresize="resize();">
+<body class="seasons-body" onresize="resize();">
 
 <!-- Aastate valik -->
-<div id="apsides_head">
+<div id="seasons_head">
 
     <!-- Minevikku -->
     <div
@@ -41,27 +41,27 @@
         <div class="seasons-inputs-wrapper">
             <input
                     type="number"
-                    id="apsides_startyear"
+                    id="seasons_startyear"
                     dir="rtl"
                     step="1"
                     onchange="
-                    this.value=clamp(Number(this.value), min_year, document.getElementById('apsides_endyear').value);
-                    update_apsides();
+                    this.value=clamp(Number(this.value), min_year, document.getElementById('seasons_endyear').value);
+                    update_seasons();
                 "
             ><b>–</b><input
                 type="number"
-                id="apsides_endyear"
+                id="seasons_endyear"
                 step="1"
                 onchange="
-                    this.value=clamp(Number(this.value), document.getElementById('apsides_startyear').value, max_year);
-                    update_apsides();
+                    this.value=clamp(Number(this.value), document.getElementById('seasons_startyear').value, max_year);
+                    update_seasons();
                 "
         >
         </div><br>
         Kellaaeg:
         <select
-                id="apsides_tz"
-                onchange="update_apsides()"
+                id="seasons_tz"
+                onchange="update_seasons()"
         >
             <option value="loc">kohalik</option>
             <option value="utc">UTC</option>
@@ -92,29 +92,29 @@
 </div>
 
 <!-- Sisu -->
-<div id="apsides_content">
+<div id="seasons_content">
 
     <table>
         <thead>
         <tr>
-            <th class="heading_normal" style="text-align: left;">Planeet</th>
-            <th class="heading_normal">Maksimum</th>
-            <th class="heading_normal">Miinimum</th>
+            <th class="heading_normal">Aasta</th>
+            <th class="heading_normal">Kevad</th>
+            <th class="heading_normal">Suvi</th>
+            <th class="heading_normal">Sügis</th>
+            <th class="heading_normal">Talv</th>
         </tr>
         </thead>
 
-        <tbody id="apsides_table"></tbody>
+        <tbody id="seasons_table"></tbody>
     </table>
 
 </div>
 
 </body>
 
-<!-- Skriptid -->
-<script src="external/astronomy.browser.min.js"></script>
+<!--Skriptid-->
+<script src="../external/astronomy.browser.min.js"></script>
 <script src="common.js"></script>
-<!-- Veebilehe skript -->
-<script src="../../Front-end/astronomy-app/src/pages/apogees.js"></script>
-
+<script src="seasons.js"></script>
 
 </html>

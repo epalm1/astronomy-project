@@ -1,120 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="et">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>astronoomia.ee aastaajad</title>
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-    <link rel="stylesheet" href="/Front-end/css/style.css">
-</head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link rel="stylesheet" href="/Front-end/css/style.css" />
+  </head>
 
-<body class="seasons-body" onresize="resize();">
-
-<!-- Aastate valik -->
-<div id="seasons_head">
-
-    <!-- Minevikku -->
-    <div
-            class="hoverblock"
-            title="10 aastat tagasi"
-            onclick="shift_years(-10)"
-    >
+  <body class="seasons-body" onresize="resize()">
+    <!-- Aastate valik -->
+    <div id="seasons_head">
+      <!-- Minevikku -->
+      <div class="hoverblock" title="10 aastat tagasi" onclick="shift_years(-10)">
         <svg width="17" height="16">
-            <polygon points="17,0 17,16 7,8" style="fill:var(--textcolor)" />
-            <polygon points="10,0 10,16 0,8" style="fill:var(--textcolor)" />
+          <polygon points="17,0 17,16 7,8" style="fill: var(--textcolor)" />
+          <polygon points="10,0 10,16 0,8" style="fill: var(--textcolor)" />
         </svg>
-    </div>
-    <div
-            class="hoverblock"
-            title="1 aasta tagasi"
-            onclick="shift_years(-1)"
-    >
+      </div>
+      <div class="hoverblock" title="1 aasta tagasi" onclick="shift_years(-1)">
         <svg width="10" height="16">
-            <polygon points="10,0 10,16 0,8" style="fill:var(--textcolor)" />
+          <polygon points="10,0 10,16 0,8" style="fill: var(--textcolor)" />
         </svg>
-    </div>
+      </div>
 
-    <!-- Praegused aastad -->
-    <div class="seasons-center-box">
+      <!-- Praegused aastad -->
+      <div class="seasons-center-box">
         Aastad:
         <div class="seasons-inputs-wrapper">
-            <input
-                    type="number"
-                    id="seasons_startyear"
-                    dir="rtl"
-                    step="1"
-                    onchange="
-                    this.value=clamp(Number(this.value), min_year, document.getElementById('seasons_endyear').value);
-                    update_seasons();
-                "
-            ><b>–</b><input
-                type="number"
-                id="seasons_endyear"
-                step="1"
-                onchange="
-                    this.value=clamp(Number(this.value), document.getElementById('seasons_startyear').value, max_year);
-                    update_seasons();
-                "
-        >
-        </div><br>
+          <input
+            type="number"
+            id="seasons_startyear"
+            dir="rtl"
+            step="1"
+            onchange="
+              this.value = clamp(
+                Number(this.value),
+                min_year,
+                document.getElementById('seasons_endyear').value
+              );
+              update_seasons();
+            "
+          /><b>–</b
+          ><input
+            type="number"
+            id="seasons_endyear"
+            step="1"
+            onchange="
+              this.value = clamp(
+                Number(this.value),
+                document.getElementById('seasons_startyear').value,
+                max_year
+              );
+              update_seasons();
+            "
+          />
+        </div>
+        <br />
         Kellaaeg:
-        <select
-                id="seasons_tz"
-                onchange="update_seasons()"
-        >
-            <option value="loc">kohalik</option>
-            <option value="utc">UTC</option>
+        <select id="seasons_tz" onchange="update_seasons()">
+          <option value="loc">kohalik</option>
+          <option value="utc">UTC</option>
         </select>
-    </div>
+      </div>
 
-    <!-- Tulevikku -->
-    <div
-            class="hoverblock"
-            title="1 aasta edasi"
-            onclick="shift_years(1)"
-    >
+      <!-- Tulevikku -->
+      <div class="hoverblock" title="1 aasta edasi" onclick="shift_years(1)">
         <svg width="10" height="16">
-            <polygon points="0,0 0,16 10,8" style="fill:var(--textcolor)" />
+          <polygon points="0,0 0,16 10,8" style="fill: var(--textcolor)" />
         </svg>
-    </div>
-    <div
-            class="hoverblock"
-            title="10 aastat edasi"
-            onclick="shift_years(10)"
-    >
+      </div>
+      <div class="hoverblock" title="10 aastat edasi" onclick="shift_years(10)">
         <svg width="17" height="16">
-            <polygon points="0,0 0,16 10,8" style="fill:var(--textcolor)" />
-            <polygon points="7,0 7,16 17,8" style="fill:var(--textcolor)" />
+          <polygon points="0,0 0,16 10,8" style="fill: var(--textcolor)" />
+          <polygon points="7,0 7,16 17,8" style="fill: var(--textcolor)" />
         </svg>
+      </div>
     </div>
 
-</div>
-
-<!-- Sisu -->
-<div id="seasons_content">
-
-    <table>
+    <!-- Sisu -->
+    <div id="seasons_content">
+      <table>
         <thead>
-        <tr>
+          <tr>
             <th class="heading_normal">Aasta</th>
             <th class="heading_normal">Kevad</th>
             <th class="heading_normal">Suvi</th>
             <th class="heading_normal">Sügis</th>
             <th class="heading_normal">Talv</th>
-        </tr>
+          </tr>
         </thead>
 
         <tbody id="seasons_table"></tbody>
-    </table>
+      </table>
+    </div>
+  </body>
 
-</div>
-
-</body>
-
-<!--Skriptid-->
-<script src="../../external/astronomy.browser.min.js"></script>
-<script src="../common.js"></script>
-<script src="seasons.js"></script>
-
+  <!--Skriptid-->
+  <script src="../../external/astronomy.browser.min.js"></script>
+  <script src="../common.js"></script>
+  <script src="seasons.js"></script>
 </html>

@@ -1,173 +1,183 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="et">
+  <head>
+    <meta charset="UTF-8" />
+    <title>astronoomia.ee esilehe vigur</title>
 
-<head>
-<meta charset="UTF-8">
-<title>astronoomia.ee esilehe vigur</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
 
-<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-
-<style>
-    :root {
+    <style>
+      :root {
         --textcolor: #888;
         --hovercolor: #00ccff88;
         --bgcolor: #00ccff22;
-    }
+      }
 
-    * {
+      * {
         font-family: 'Roboto', sans-serif;
         color: var(--textcolor);
         box-sizing: border-box;
-    }
-    
-    .nobr {
+      }
+
+      .nobr {
         white-space: nowrap;
-    }
+      }
 
-    td {
+      td {
         padding: 0px;
-    }
+      }
 
-    .leftpad {
+      .leftpad {
         padding-left: 10px;
-    }
-    .bottompad {
+      }
+      .bottompad {
         display: inline-block;
         padding-bottom: 5px;
-    }
+      }
 
-    /* Kursorile reageerivad elemendid */
-    .hoverblock, .hoverblock-text {
+      /* Kursorile reageerivad elemendid */
+      .hoverblock,
+      .hoverblock-text {
         background-color: var(--bgcolor);
-    }
+      }
 
-    .hoverblock:hover {
+      .hoverblock:hover {
         background-color: var(--hovercolor);
         cursor: pointer;
         user-select: none;
         -webkit-user-select: none;
         -ms-user-select: none;
-    }
+      }
 
-    .hoverblock-text:hover {
+      .hoverblock-text:hover {
         background-color: var(--hovercolor);
         cursor: pointer;
         text-decoration: underline;
-    }
+      }
 
-    .hoverblock:active, .hoverblock-text:active, select:active {
+      .hoverblock:active,
+      .hoverblock-text:active,
+      select:active {
         filter: brightness(200%);
-    }
+      }
 
-    select, input {
+      select,
+      input {
         background-color: transparent;
         border: none;
         vertical-align: middle;
         margin: 1px 1px 4px 2px;
         padding: 0px;
-    }
+      }
 
-    select:hover, input:hover {
+      select:hover,
+      input:hover {
         background-color: var(--hovercolor);
         text-decoration: underline;
         cursor: pointer;
-    }
+      }
 
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
+      input[type='number']::-webkit-inner-spin-button,
+      input[type='number']::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
 
-    input:disabled {
+      input:disabled {
         cursor: not-allowed;
-    }
+      }
 
-    /* Pildid ja graafika */
-    svg, canvas {
+      /* Pildid ja graafika */
+      svg,
+      canvas {
         display: block;
         margin: auto;
-    }
+      }
 
-    .graph_grid line {
+      .graph_grid line {
         stroke: #666;
         stroke-opacity: 0.1;
         shape-rendering: crispEdges;
-    }
+      }
+    </style>
+  </head>
 
-</style>
-
-</head>
-
-<body id="fw_body" style="background-color: transparent; margin: 0px auto;">
-
-<!-- Kuupäeva valik -->
-<div id="fw_head_1" style="width: 100%; display: flex;">
-
-    <!-- Eelmine päev -->
-    <div
+  <body id="fw_body" style="background-color: transparent; margin: 0px auto">
+    <!-- Kuupäeva valik -->
+    <div id="fw_head_1" style="width: 100%; display: flex">
+      <!-- Eelmine päev -->
+      <div
         class="hoverblock"
         title="Eelmine päev"
-        style="display: flex; flex-grow: 1; padding: 0px 20px; border-top-left-radius: 20px;"
+        style="display: flex; flex-grow: 1; padding: 0px 20px; border-top-left-radius: 20px"
         onclick="
-            if (document.getElementById('fw_date').value != document.getElementById('fw_date').min) {
-                document.getElementById('fw_realtime').checked = false;
-                times.base = new Date(times.base.getFullYear(), times.base.getMonth(), times.base.getDate()-1, 12);
-                document.getElementById('fw_date').value = datestring(times.base);
-                fw_update(calc=true, draw=true);
-            }
+          if (document.getElementById('fw_date').value != document.getElementById('fw_date').min) {
+            document.getElementById('fw_realtime').checked = false;
+            times.base = new Date(
+              times.base.getFullYear(),
+              times.base.getMonth(),
+              times.base.getDate() - 1,
+              12
+            );
+            document.getElementById('fw_date').value = datestring(times.base);
+            fw_update((calc = true), (draw = true));
+          }
         "
-    >
+      >
         <svg width="10" height="16">
-            <polygon points="10,0 10,15 0,8" style="fill:var(--textcolor)" />
+          <polygon points="10,0 10,15 0,8" style="fill: var(--textcolor)" />
         </svg>
-    </div>
+      </div>
 
-    <!-- Kuupäeva silt ja kalender -->
-    <div style="padding: 10px; text-align: center; background-color: var(--bgcolor);">
-
+      <!-- Kuupäeva silt ja kalender -->
+      <div style="padding: 10px; text-align: center; background-color: var(--bgcolor)">
         <!-- Silt -->
         Taevas<span id="fw_daylabel"></span>
         <!-- Kuupäeva valik -->
         <input
-            type="date"
-            id="fw_date"
-            title="Vali kuupäev"
-            min="1900-01-01"
-            max="2199-12-31"
-            style="font-size: medium; vertical-align: baseline; width: 115px;"
-            onchange="
-                document.getElementById('fw_realtime').checked = false;
-                times.base = new Date(Date.parse(this.value+'T12:00:00'));
-                fw_update(calc=true, draw=true);
-            ">
-    </div>
+          type="date"
+          id="fw_date"
+          title="Vali kuupäev"
+          min="1900-01-01"
+          max="2199-12-31"
+          style="font-size: medium; vertical-align: baseline; width: 115px"
+          onchange="
+            document.getElementById('fw_realtime').checked = false;
+            times.base = new Date(Date.parse(this.value + 'T12:00:00'));
+            fw_update((calc = true), (draw = true));
+          "
+        />
+      </div>
 
-    <!-- Järgmine päev -->
-    <div
+      <!-- Järgmine päev -->
+      <div
         class="hoverblock"
         title="Järgmine päev"
-        style="display: flex; flex-grow: 1; padding: 0px 20px; border-top-right-radius: 20px;"
+        style="display: flex; flex-grow: 1; padding: 0px 20px; border-top-right-radius: 20px"
         onclick="
-            if (document.getElementById('fw_date').value != document.getElementById('fw_date').max) {
-                document.getElementById('fw_realtime').checked = false;
-                times.base = new Date(times.base.getFullYear(), times.base.getMonth(), times.base.getDate()+1, 12);
-                document.getElementById('fw_date').value = datestring(times.base);
-                fw_update(calc=true, draw=true);
-            }
+          if (document.getElementById('fw_date').value != document.getElementById('fw_date').max) {
+            document.getElementById('fw_realtime').checked = false;
+            times.base = new Date(
+              times.base.getFullYear(),
+              times.base.getMonth(),
+              times.base.getDate() + 1,
+              12
+            );
+            document.getElementById('fw_date').value = datestring(times.base);
+            fw_update((calc = true), (draw = true));
+          }
         "
-    >
+      >
         <svg width="10" height="16">
-            <polygon points="0,0 0,15 10,8" style="fill:var(--textcolor)" />
+          <polygon points="0,0 0,15 10,8" style="fill: var(--textcolor)" />
         </svg>
+      </div>
     </div>
 
-</div>
-
-<!-- Vaatleja asukoht -->
-<div
-    id="fw_head_2"
-    style="
+    <!-- Vaatleja asukoht -->
+    <div
+      id="fw_head_2"
+      style="
         width: 100%;
         padding: 5px 20px;
         background-color: var(--bgcolor);
@@ -175,207 +185,233 @@
         flex-wrap: wrap;
         justify-content: space-evenly;
         align-items: baseline;
-    ">
-    
-    <!-- Asukoha koordinaadid -->
-    <div
+      "
+    >
+      <!-- Asukoha koordinaadid -->
+      <div
         style="
-            font-size: smaller;
-            padding: 5px 0px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-            align-items: baseline;
-        ">
-        
+          font-size: smaller;
+          padding: 5px 0px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-evenly;
+          align-items: baseline;
+        "
+      >
         <!-- Pikkuskraad -->
         <div class="nobr" title="Pikkuskraad">
-            λ = 
-            <input
-                type="number"
-                id="fw_lon"
-                min="21"
-                max="29"
-                step="0.0001"
-                style="width: 40px; text-align: right;"
-                onchange="
-                    document.getElementById('fw_location').value='coords';
-                    fw_update(calc=true, draw=true);
-                "
-            >°E;
+          λ =
+          <input
+            type="number"
+            id="fw_lon"
+            min="21"
+            max="29"
+            step="0.0001"
+            style="width: 40px; text-align: right"
+            onchange="
+              document.getElementById('fw_location').value = 'coords';
+              fw_update((calc = true), (draw = true));
+            "
+          />°E;
         </div>
 
         <!-- Laiuskraad -->
-        <div class="nobr" title="Laiuskraad" style="padding: 0px 20px;">
-            φ =
-            <input
-                type="number"
-                id="fw_lat"
-                min="57"
-                max="60"
-                step="0.0001"
-                style="width: 40px; text-align: right;"
-                onchange="
-                    document.getElementById('fw_location').value='coords';
-                    fw_update(calc=true, draw=true);
-                "
-            >°N;
+        <div class="nobr" title="Laiuskraad" style="padding: 0px 20px">
+          φ =
+          <input
+            type="number"
+            id="fw_lat"
+            min="57"
+            max="60"
+            step="0.0001"
+            style="width: 40px; text-align: right"
+            onchange="
+              document.getElementById('fw_location').value = 'coords';
+              fw_update((calc = true), (draw = true));
+            "
+          />°N;
         </div>
 
         <!-- Kõrgus -->
         <div class="nobr" title="Kõrgus merepinnast">
-            h =
-            <input
-                type="number"
-                id="fw_elev"
-                min="0"
-                max="10000"
-                style="width: 30px; text-align: right;"
-                onchange="
-                    document.getElementById('fw_location').value='coords';
-                    fw_update(calc=true, draw=true);
-                "
-            > m
+          h =
+          <input
+            type="number"
+            id="fw_elev"
+            min="0"
+            max="10000"
+            style="width: 30px; text-align: right"
+            onchange="
+              document.getElementById('fw_location').value = 'coords';
+              fw_update((calc = true), (draw = true));
+            "
+          />
+          m
         </div>
+      </div>
 
-    </div>
-
-    <!-- Asukoha valik -->
-    <div
+      <!-- Asukoha valik -->
+      <div
         style="
-            padding: 0px 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-            align-items: baseline;
+          padding: 0px 20px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-evenly;
+          align-items: baseline;
         "
-    >
+      >
         Vaatleja asukoht:
         <select
-            id="fw_location"
-            style="font-weight: bold; font-size: medium;"
-            onchange="fw_update(calc=true, draw=true);"
+          id="fw_location"
+          style="font-weight: bold; font-size: medium"
+          onchange="fw_update((calc = true), (draw = true))"
         >
-            <option value="estcen">Eesti keskpunkt</option>
-            <!--<option value="geocen">Maa keskpunkt</option>-->
-            <option value="coords">kasutaja koordinaadid</option>
-            <optgroup label="Valik Eesti asulaid:">
-                <option value="Haapsalu">Haapsalu</option>
-                <option value="Jõgeva">Jõgeva</option>
-                <option value="Jõhvi">Jõhvi</option>
-                <option value="Kuressaare">Kuressaare</option>
-                <option value="Kärdla">Kärdla</option>
-                <option value="Mustvee">Mustvee</option>
-                <option value="Narva">Narva</option>
-                <option value="Paide">Paide</option>
-                <option value="Petseri">Petseri</option>
-                <option value="Põlva">Põlva</option>
-                <option value="Pärnu">Pärnu</option>
-                <option value="Rakvere">Rakvere</option>
-                <option value="Rapla">Rapla</option>
-                <option value="Tallinn">Tallinn</option>
-                <option value="Tartu">Tartu</option>
-                <option value="Tõrva">Tõrva</option>
-                <option value="Valga">Valga</option>
-                <option value="Võru">Võru</option>
-                <option value="Viljandi">Viljandi</option>
-            </optgroup>
+          <option value="estcen">Eesti keskpunkt</option>
+          <!--<option value="geocen">Maa keskpunkt</option>-->
+          <option value="coords">kasutaja koordinaadid</option>
+          <optgroup label="Valik Eesti asulaid:">
+            <option value="Haapsalu">Haapsalu</option>
+            <option value="Jõgeva">Jõgeva</option>
+            <option value="Jõhvi">Jõhvi</option>
+            <option value="Kuressaare">Kuressaare</option>
+            <option value="Kärdla">Kärdla</option>
+            <option value="Mustvee">Mustvee</option>
+            <option value="Narva">Narva</option>
+            <option value="Paide">Paide</option>
+            <option value="Petseri">Petseri</option>
+            <option value="Põlva">Põlva</option>
+            <option value="Pärnu">Pärnu</option>
+            <option value="Rakvere">Rakvere</option>
+            <option value="Rapla">Rapla</option>
+            <option value="Tallinn">Tallinn</option>
+            <option value="Tartu">Tartu</option>
+            <option value="Tõrva">Tõrva</option>
+            <option value="Valga">Valga</option>
+            <option value="Võru">Võru</option>
+            <option value="Viljandi">Viljandi</option>
+          </optgroup>
         </select>
-    </div>
+      </div>
 
-    <!-- Seadistus -->
-    <div
+      <!-- Seadistus -->
+      <div
         style="
-            font-size: smaller;
-            padding: 5px 0px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
+          font-size: smaller;
+          padding: 5px 0px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-evenly;
         "
-    >
+      >
         <div class="nobr">
-            Reaalajas: <input type="checkbox" id="fw_realtime" checked onchange="if (this.checked) {realtime();}"/>
+          Reaalajas:
+          <input
+            type="checkbox"
+            id="fw_realtime"
+            checked
+            onchange="
+              if (this.checked) {
+                realtime();
+              }
+            "
+          />
         </div>
-        <div class="nobr" style="padding: 0px 20px; display: none;">
-            Atmosfäär ja maapind: <input type="checkbox" id="fw_earth" checked />
+        <div class="nobr" style="padding: 0px 20px; display: none">
+          Atmosfäär ja maapind: <input type="checkbox" id="fw_earth" checked />
         </div>
-        <div id="fw_planets_control" class="nobr" style="display: none;">
-            Näita planeete: <input type="checkbox" id="fw_planets_on" />
+        <div id="fw_planets_control" class="nobr" style="display: none">
+          Näita planeete: <input type="checkbox" id="fw_planets_on" />
         </div>
+      </div>
     </div>
-</div>
 
-<!-- Sisu -->
-<div
-    style="
+    <!-- Sisu -->
+    <div
+      style="
         padding: 0px 5px;
         border: 10px solid var(--bgcolor);
         border-top: 5px solid var(--bgcolor);
         border-radius: 0px 0px 20px 20px;
-    "
+      "
     >
-    <table id="fw_content" style="width: 100%; border-collapse: collapse;"><tbody>
-        <tr>
-            <td id="fw_sundata_1" colspan="2" style="font-size: 10px;"></td>
-            <td id="fw_graph_cell" rowspan="4" style="width: 99%; position: relative;">
+      <table id="fw_content" style="width: 100%; border-collapse: collapse">
+        <tbody>
+          <tr>
+            <td id="fw_sundata_1" colspan="2" style="font-size: 10px"></td>
+            <td id="fw_graph_cell" rowspan="4" style="width: 99%; position: relative">
+              <!-- Ajajoon -->
+              <div
+                id="fw_timeline"
+                onmousemove="
+                  if (!document.getElementById('fw_realtime').checked) {
+                    graph_interactive(event);
+                  }
+                "
+                onmouseup="
+                  graph_interactive(event);
+                  draw_sun(times.base);
+                  draw_moon(times.base);
+                "
+                onmousedown="document.getElementById('fw_realtime').checked = false"
+              >
+                Ajajoon
+              </div>
 
-                <!-- Ajajoon -->
-                <div
-                    id="fw_timeline"
-                    onmousemove="if (!document.getElementById('fw_realtime').checked) {graph_interactive(event);}"
-                    onmouseup="graph_interactive(event); draw_sun(times.base); draw_moon(times.base);"
-                    onmousedown="document.getElementById('fw_realtime').checked = false;"
-                    >Ajajoon
-                </div>
+              <!-- Kellaaja indikaator -->
+              <div
+                id="fw_graph_time"
+                style="
+                  user-select: none;
+                  position: absolute;
+                  top: 20px;
+                  font-size: small;
+                  font-weight: bold;
+                  color: rgb(100, 100, 255);
+                  background-color: rgba(100, 100, 255, 0.25);
+                  padding: 2px;
+                  border: 1px solid rgb(100, 100, 255);
+                "
+                onmousemove="
+                  if (!document.getElementById('fw_realtime').checked) {
+                    graph_interactive(event);
+                  }
+                "
+                onmouseup="
+                  graph_interactive(event);
+                  draw_sun(times.base);
+                  draw_moon(times.base);
+                "
+                onmousedown="document.getElementById('fw_realtime').checked = false"
+              ></div>
 
-                <!-- Kellaaja indikaator -->
-                <div
-                    id="fw_graph_time"
-                    style="
-                        user-select: none;
-                        position: absolute;
-                        top: 20px;
-                        font-size: small;
-                        font-weight: bold; color: rgb(100, 100, 255);
-                        background-color: rgba(100, 100, 255, 0.25);
-                        padding: 2px; border: 1px solid rgb(100, 100, 255);
-                    "
-                    onmousemove="if (!document.getElementById('fw_realtime').checked) {graph_interactive(event);}"
-                    onmouseup="graph_interactive(event); draw_sun(times.base); draw_moon(times.base);"
-                    onmousedown="document.getElementById('fw_realtime').checked = false;"
-                    >
-                </div>
-
-                <!-- Taeva graafik -->
-                <div id="fw_graph">Graafik</div>
+              <!-- Taeva graafik -->
+              <div id="fw_graph">Graafik</div>
             </td>
-        </tr>
-        <tr>
+          </tr>
+          <tr>
             <td id="fw_sundata_3"><canvas id="fw_sun_canv"></canvas></td>
-            <td id="fw_sundata_4" class="nobr" style="font-size: 10px;"></td>
-        </tr>
-        <tr>
-            <td id="fw_moondata_1" colspan="2" style="font-size: 10px;"></td>
-        </tr>
-        <tr>
+            <td id="fw_sundata_4" class="nobr" style="font-size: 10px"></td>
+          </tr>
+          <tr>
+            <td id="fw_moondata_1" colspan="2" style="font-size: 10px"></td>
+          </tr>
+          <tr>
             <td id="fw_moondata_3"><canvas id="fw_moon_canv"></canvas></td>
-            <td id="fw_moondata_4" class="nobr" style="font-size: 10px;"></td>
-        </tr>
-    </tbody></table>
-</div>
+            <td id="fw_moondata_4" class="nobr" style="font-size: 10px"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-<canvas id="fw_moon_map" style="display: none;"></canvas>
-<!--<canvas id="fw_sun_sdo" style="display: none;"></canvas>-->
+    <canvas id="fw_moon_map" style="display: none"></canvas>
+    <!--<canvas id="fw_sun_sdo" style="display: none;"></canvas>-->
+  </body>
 
-</body>
+  <!--Skriptid-->
+  <script src="../external/astronomy.browser.min.js"></script>
+  <script src="../external/d3.v7.min.js"></script>
+  <script src="../external/d3-geo-projection.min.js"></script>
+  <script src="common.js"></script>
 
-<!--Skriptid-->
-<script src="../external/astronomy.browser.min.js"></script>
-<script src="../external/d3.v7.min.js"></script>
-<script src="../external/d3-geo-projection.min.js"></script>
-<script src="common.js"></script>
-
-<!--Veebilehe skript-->
-
-
+  <!--Veebilehe skript-->
 </html>

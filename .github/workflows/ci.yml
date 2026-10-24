@@ -73,7 +73,7 @@ jobs:
 
       - name: Run checkstyle
         working-directory: Backend
-        run: ./mvnw checkstyle check
+        run: ./mvnw checkstyle:check
 
   backend-format:
     name: Backend format

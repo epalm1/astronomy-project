@@ -75,7 +75,7 @@ jobs:
     name: Backend format
     runs-on: ubuntu-latest
 
-    stpes:
+    steps:
       - name: Check out repository
         uses: actions/checkout@v4
 

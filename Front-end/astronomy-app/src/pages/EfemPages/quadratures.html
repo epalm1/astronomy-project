@@ -1,119 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="et">
+  <head>
+    <meta charset="UTF-8" />
+    <title>astronoomia.ee kvadratuurid</title>
 
-<head>
-  <meta charset="UTF-8">
-  <title>astronoomia.ee kvadratuurid</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link rel="stylesheet" href="/Front-end/css/style.css" />
+  </head>
 
-  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-  <link rel="stylesheet" href="/Front-end/css/style.css">
-</head>
+  <body class="quadratuurid-body" onresize="resize()">
+    <!-- Aastate valik -->
+    <div id="quadratuurid_head">
+      <!-- Minevikku -->
+      <div class="hoverblock" title="10 aastat tagasi" onclick="shift_years(-10)">
+        <svg width="17" height="16">
+          <polygon points="17,0 17,16 7,8" style="fill: var(--textcolor)" />
+          <polygon points="10,0 10,16 0,8" style="fill: var(--textcolor)" />
+        </svg>
+      </div>
+      <div class="hoverblock" title="1 aasta tagasi" onclick="shift_years(-1)">
+        <svg width="10" height="16">
+          <polygon points="10,0 10,16 0,8" style="fill: var(--textcolor)" />
+        </svg>
+      </div>
 
-<body class="quadratuurid-body" onresize="resize();">
-
-<!-- Aastate valik -->
-<div id="quadratuurid_head">
-
-  <!-- Minevikku -->
-  <div
-          class="hoverblock"
-          title="10 aastat tagasi"
-          onclick="shift_years(-10)"
-  >
-    <svg width="17" height="16">
-      <polygon points="17,0 17,16 7,8" style="fill:var(--textcolor)" />
-      <polygon points="10,0 10,16 0,8" style="fill:var(--textcolor)" />
-    </svg>
-  </div>
-  <div
-          class="hoverblock"
-          title="1 aasta tagasi"
-          onclick="shift_years(-1)"
-  >
-    <svg width="10" height="16">
-      <polygon points="10,0 10,16 0,8" style="fill:var(--textcolor)" />
-    </svg>
-  </div>
-
-  <!-- Praegused aastad -->
-  <div class="seasons-center-box">
-    Aastad:
-    <div class="seasons-inputs-wrapper">
-      <input
-              type="number"
-              id="quadratuurid_startyear"
-              dir="rtl"
-              step="1"
-              onchange="
-                    this.value=clamp(Number(this.value), min_year, document.getElementById('quadratuurid_endyear').value);
-                    update_quadratuurid();
-                "
-      ><b>–</b><input
+      <!-- Praegused aastad -->
+      <div class="seasons-center-box">
+        Aastad:
+        <div class="seasons-inputs-wrapper">
+          <input
+            type="number"
+            id="quadratuurid_startyear"
+            dir="rtl"
+            step="1"
+            onchange="
+              this.value = clamp(
+                Number(this.value),
+                min_year,
+                document.getElementById('quadratuurid_endyear').value
+              );
+              update_quadratuurid();
+            "
+          /><b>–</b
+          ><input
             type="number"
             id="quadratuurid_endyear"
             step="1"
             onchange="
-                    this.value=clamp(Number(this.value), document.getElementById('quadratuurid_startyear').value, max_year);
-                    update_quadratuurid();
-                "
-    >
-    </div><br>
-    Kellaaeg:
-    <select
-            id="quadratuurid_tz"
-            onchange="update_quadratuurid()"
-    >
-      <option value="loc">kohalik</option>
-      <option value="utc">UTC</option>
-    </select>
-  </div>
+              this.value = clamp(
+                Number(this.value),
+                document.getElementById('quadratuurid_startyear').value,
+                max_year
+              );
+              update_quadratuurid();
+            "
+          />
+        </div>
+        <br />
+        Kellaaeg:
+        <select id="quadratuurid_tz" onchange="update_quadratuurid()">
+          <option value="loc">kohalik</option>
+          <option value="utc">UTC</option>
+        </select>
+      </div>
 
-  <!-- Tulevikku -->
-  <div
-          class="hoverblock"
-          title="1 aasta edasi"
-          onclick="shift_years(1)"
-  >
-    <svg width="10" height="16">
-      <polygon points="0,0 0,16 10,8" style="fill:var(--textcolor)" />
-    </svg>
-  </div>
-  <div
-          class="hoverblock"
-          title="10 aastat edasi"
-          onclick="shift_years(10)"
-  >
-    <svg width="17" height="16">
-      <polygon points="0,0 0,16 10,8" style="fill:var(--textcolor)" />
-      <polygon points="7,0 7,16 17,8" style="fill:var(--textcolor)" />
-    </svg>
-  </div>
+      <!-- Tulevikku -->
+      <div class="hoverblock" title="1 aasta edasi" onclick="shift_years(1)">
+        <svg width="10" height="16">
+          <polygon points="0,0 0,16 10,8" style="fill: var(--textcolor)" />
+        </svg>
+      </div>
+      <div class="hoverblock" title="10 aastat edasi" onclick="shift_years(10)">
+        <svg width="17" height="16">
+          <polygon points="0,0 0,16 10,8" style="fill: var(--textcolor)" />
+          <polygon points="7,0 7,16 17,8" style="fill: var(--textcolor)" />
+        </svg>
+      </div>
+    </div>
 
-</div>
+    <!-- Sisu -->
+    <div id="quadratuurid_content">
+      <table>
+        <thead>
+          <tr>
+            <th class="heading_normal" style="text-align: left">Planeet</th>
+            <th class="heading_normal" style="text-align: center">Faasinurk</th>
+            <th class="heading_normal" style="text-align: right">Kuupäev</th>
+          </tr>
+        </thead>
 
-<!-- Sisu -->
-<div id="quadratuurid_content">
+        <tbody id="quadratuurid_table"></tbody>
+      </table>
+    </div>
+  </body>
 
-  <table>
-    <thead>
-    <tr>
-      <th class="heading_normal" style="text-align: left;">Planeet</th>
-      <th class="heading_normal" style="text-align: center;">Faasinurk</th>
-      <th class="heading_normal" style="text-align: right;">Kuupäev</th>
-    </tr>
-    </thead>
-
-    <tbody id="quadratuurid_table"></tbody>
-  </table>
-
-</div>
-
-</body>
-
-<!--Skriptid-->
-<script src="../../external/astronomy.browser.min.js"></script>
-<script src="../common.js"></script>
-<script src="quadratures.jsx"></script>
-
-
+  <!--Skriptid-->
+  <script src="../../external/astronomy.browser.min.js"></script>
+  <script src="../common.js"></script>
+  <script src="quadratures.jsx"></script>
 </html>

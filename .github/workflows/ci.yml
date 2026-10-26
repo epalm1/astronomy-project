@@ -1,5 +1,4 @@
-name: Basic pipeline
-
+name: Astronomy Website Pipeline
 # Events that automatically start the pipeline
 on:
   push:
@@ -10,24 +9,91 @@ on:
 permissions:
   contents: read
 
-
 jobs:
-  basic-checks:
+  frontend-lint:
+    name: Frontend Lint
     runs-on: ubuntu-latest
-
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      # Check that at least one project file exists
-      - name: Check repository files
-        run: |
-          echo "Checking that repository contains files..."
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
-          test -n "$(find . -type f \
-            -not -path './.git/*' \
-            -not -path './.github/*' \
-            -print -quit)"
+      - name: Install frontend dependencies
+        working-directory: Front-end/astronomy-app
+        run: npm ci
 
-          echo "Repository files found."
+      - name: Run ESLint
+        working-directory: Front-end/astronomy-app
+        run: npm run lint
+
+  frontend-format:
+    name: Frontend Format
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install frontend dependencies
+        working-directory: Front-end/astronomy-app
+        run: npm ci
+
+      - name: Check formatting
+        working-directory: Front-end/astronomy-app
+        run: npm run format:check
+
+  backend-lint:
+    name: Backend Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up java
+        uses: actions/setup-java@v4
+        with:
+          distribution: corretto
+          java-version: 25
+          cache: maven
+
+      - name: Make Maven wrapper executable
+        run: chmod +x mvnw
+        working-directory: Backend
+
+      - name: Run checkstyle
+        working-directory: Backend
+        run: ./mvnw checkstyle:check
+
+  backend-format:
+    name: Backend format
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up java
+        uses: actions/setup-java@v4
+        with:
+          distribution: corretto
+          java-version: 25
+          cache: maven
+
+      - name: Make Maven wrapper executable
+        run: chmod +x mvnw
+        working-directory: Backend
+        
+      - name: Check formatting
+        working-directory: Backend
+        run: ./mvnw spotless:check

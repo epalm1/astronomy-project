@@ -3,9 +3,9 @@ import Navbar from "./components/Navbar/Navbar.jsx";
 // import Eclipses from "./pages/eclipses";
 // import Quadratures from "./pages/eclipses";
 
-import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
-import {useState} from "react";
+import Header from './components/Header.jsx';
+import Footer from './components/Footer.jsx';
+import { useState } from 'react';
 
 function App() {
   return (

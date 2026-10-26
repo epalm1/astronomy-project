@@ -1,95 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="et">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>astronoomia.ee Kuufaasid</title>
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
     <!-- Kohanda vajadusel CSS-i teed (nt ../../F/css/style.css) -->
-    <link rel="stylesheet" href="/Front-end/css/style.css">
-</head>
+    <link rel="stylesheet" href="/Front-end/css/style.css" />
+  </head>
 
-<body class="moon-body" onresize="resize();">
-
-<!-- Aasta valik -->
-<div id="moonphase_head">
-
-    <!-- Eelmine aasta -->
-    <div
-            class="hoverblock"
-            title="Eelmine aasta"
-            onclick="shift_years(-1)"
-    >
+  <body class="moon-body" onresize="resize()">
+    <!-- Aasta valik -->
+    <div id="moonphase_head">
+      <!-- Eelmine aasta -->
+      <div class="hoverblock" title="Eelmine aasta" onclick="shift_years(-1)">
         <svg width="10" height="16">
-            <polygon points="10,0 10,16 0,8" style="fill:var(--textcolor)" />
+          <polygon points="10,0 10,16 0,8" style="fill: var(--textcolor)" />
         </svg>
-    </div>
+      </div>
 
-    <!-- Praegused aastad -->
-    <div class="seasons-center-box">
+      <!-- Praegused aastad -->
+      <div class="seasons-center-box">
         Aasta:
         <input
-                type="number"
-                id="moonphase_year"
-                step="1"
-                onchange="
-                this.value = clamp(Number(this.value), min_year, max_year);
-                update_phases();
-            "
-        ><br>
+          type="number"
+          id="moonphase_year"
+          step="1"
+          onchange="
+            this.value = clamp(Number(this.value), min_year, max_year);
+            update_phases();
+          "
+        /><br />
         Kellaaeg:
-        <select
-                id="moonphase_tz"
-                onchange="update_phases()"
-        >
-            <option value="loc">kohalik</option>
-            <option value="utc">UTC</option>
+        <select id="moonphase_tz" onchange="update_phases()">
+          <option value="loc">kohalik</option>
+          <option value="utc">UTC</option>
         </select>
-    </div>
+      </div>
 
-    <!-- Järgmine aasta -->
-    <div
-            class="hoverblock"
-            title="Järgmine aasta"
-            onclick="shift_years(1)"
-    >
+      <!-- Järgmine aasta -->
+      <div class="hoverblock" title="Järgmine aasta" onclick="shift_years(1)">
         <svg width="10" height="16">
-            <polygon points="0,0 0,16 10,8" style="fill:var(--textcolor)" />
+          <polygon points="0,0 0,16 10,8" style="fill: var(--textcolor)" />
         </svg>
+      </div>
     </div>
 
-</div>
-
-<!-- Sisu -->
-<div id="moonphase_content">
-
-    <table>
+    <!-- Sisu -->
+    <div id="moonphase_content">
+      <table>
         <thead>
-        <tr>
+          <tr>
             <th id="moonphase_0" class="heading_normal">Kuu&shy;loomine</th>
             <th id="moonphase_1" class="heading_normal">I veerand</th>
             <th id="moonphase_2" class="heading_normal">Täis&shy;kuu</th>
             <th id="moonphase_3" class="heading_normal">III veerand</th>
-        </tr>
-        <tr>
-            <th><img src="../meedia/kuu0.svg" width="20"></th> <!--kuu pildi failid on puudu/kadunud-->
-            <th><img src="../meedia/kuu2.svg" width="20"></th>
-            <th><img src="../meedia/kuu4.svg" width="20"></th>
-            <th><img src="../meedia/kuu6.svg" width="20"></th>
-        </tr>
+          </tr>
+          <tr>
+            <th><img src="../meedia/kuu0.svg" width="20" /></th>
+            <!--kuu pildi failid on puudu/kadunud-->
+            <th><img src="../meedia/kuu2.svg" width="20" /></th>
+            <th><img src="../meedia/kuu4.svg" width="20" /></th>
+            <th><img src="../meedia/kuu6.svg" width="20" /></th>
+          </tr>
         </thead>
 
         <tbody id="moonphase_table"></tbody>
-    </table>
+      </table>
+    </div>
+  </body>
 
-</div>
-
-</body>
-
-<!--Skriptid-->
-<script src="../../external/astronomy.browser.min.js"></script>
-<script src="../common.js"></script>
-<script src="moonphases.js"></script>
-
+  <!--Skriptid-->
+  <script src="../../external/astronomy.browser.min.js"></script>
+  <script src="../common.js"></script>
+  <script src="moonphases.js"></script>
 </html>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import DateFilterHeader from '../../components/DateFilterHeader.jsx';
 import DataTable from '../../components/DataTable.jsx';
+import '../../styles/tables.css'
 
 function EclipsesPage() {
   const [startYear, setStartYear] = useState(2020);

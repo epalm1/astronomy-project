@@ -3,7 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 // import Eclipses from '././././pages/EfemPages/eclipses.jsx';
 import EclipsesPage from '../../../../pages/EfemPages/eclipses.jsx';
 // import Eclipses from "../../../../pages/EfemPages/eclipses.jsx";
-// import Quadratures from '../../../../pages/EfemPages/quadratures.jsx';
+import QuadraturesPage from '../../../../pages/EfemPages/quadratures.jsx';
 
 function Efemeriidid() {
   return (
@@ -12,7 +12,7 @@ function Efemeriidid() {
       <Link to="eclipses">Varjutused</Link>
       <Routes>
         <Route path="eclipses" element={<EclipsesPage />} />
-        {/*<Route path='/quadratures' element={<Quadratures />} />*/}
+        <Route path='/quadratures' element={<QuadraturesPage />} />
       </Routes>
     </div>
   );

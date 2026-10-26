@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DateFilterHeader from '../../components/DateFilterHeader';
 import DataTable from '../../components/DataTable';
 import '../../styles/tables.css';
@@ -7,6 +7,55 @@ function QuadraturesPage() {
   const [startYear, setStartYear] = useState(2020);
   const [endYear, setEndYear] = useState(2026);
   const [timeZone, setTimeZone] = useState('loc');
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function fetchQuadratures() {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const params = new URLSearchParams({
+          startYear: String(startYear),
+          endYear: String(endYear)
+        });
+
+        const response = await fetch(`http://localhost:8080/api/quadratures?${params}`, {
+          signal: controller.signal
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          setError(err.message);
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
+      }
+    }
+
+    fetchQuadratures();
+
+    return () => controller.abort();
+  }, [startYear, endYear]);
+
+  const tableData = data.map((item) => ({
+    id: item.id,
+    planet: item.outerPlanetId,
+    angle: item.phaseAngle,
+    date: item.time ? new Date(item.time).toLocaleString('et-EE') : ''
+  }));
 
   const handleShiftYears = (amount) => {
     setStartYear((prev) => Number(prev) + amount);
@@ -29,7 +78,11 @@ function QuadraturesPage() {
         handleShiftYears={handleShiftYears}
         handleTzChange={(e) => setTimeZone(e.target.value)}
       />
-      <DataTable columns={columns} data={data} />
+      {loading && <p>Laen kvadratuure</p>}
+
+      {error && <p role="alert">Viga andmete laadimisel: {error}</p>}
+
+      {!loading && !error && <DataTable columns={columns} data={tableData} />}
     </div>
   );
 }

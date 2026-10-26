@@ -4,8 +4,6 @@ import { Routes, Route, Link } from 'react-router-dom';
 import EclipsesPage from '../../../../pages/EfemPages/eclipses.jsx';
 // import Eclipses from "../../../../pages/EfemPages/eclipses.jsx";
 import QuadraturesPage from '../../../../pages/EfemPages/quadratures.jsx';
-import '../../../../styles/style.css';
-import '../../../../styles/index.css';
 
 function Efemeriidid() {
   return (

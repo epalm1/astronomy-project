@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 function Taevaylevaade() {
-    return (
-        <div>
-            <p>hobiastronoomia</p>
-        </div>
-    );
+  return (
+    <div>
+      <p>hobiastronoomia</p>
+    </div>
+  );
 }
 export default Taevaylevaade;

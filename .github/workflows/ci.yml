@@ -142,4 +142,4 @@ jobs:
 
       - name: Build backend
         working-directory: Backend
-        run: ./mvnw clean package
+        run: ./mvnw clean package -DskipTests

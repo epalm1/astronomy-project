@@ -1,11 +1,14 @@
+
 package com.example.backend.controller;
 
 import com.example.backend.dto.QuadratureResponse;
 import com.example.backend.service.QuadratureService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -13,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/quadratures")
 public class QuadratureController {
+
 	private final QuadratureService service;
 
 	public QuadratureController(QuadratureService service) {
@@ -20,12 +24,14 @@ public class QuadratureController {
 	}
 
 	@GetMapping
-	public List<QuadratureResponse> findAll() {
-		return service.findAll();
+	public List<QuadratureResponse> findAll(@RequestParam int startYear, @RequestParam int endYear) {
+
+		return service.findByYearRange(startYear, endYear);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<QuadratureResponse> findById(@PathVariable Integer id) {
+
 		return service.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 	}
 }

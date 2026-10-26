@@ -21,10 +21,12 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ApiError> handleValidationException(MethodArgumentNotValidException exception) {
 
-		final Map<String, String> errors = exception.getBindingResult().getFieldErrors().stream().collect(Collectors.toMap(
-				fieldError -> fieldError.getField(),
-				fieldError -> fieldError.getDefaultMessage() == null ? "Invalid value" : fieldError.getDefaultMessage(),
-				(first, second) -> first));
+		final Map<String, String> errors = exception.getBindingResult().getFieldErrors().stream()
+				.collect(Collectors.toMap(fieldError -> fieldError.getField(),
+						fieldError -> fieldError.getDefaultMessage() == null
+								? "Invalid value"
+								: fieldError.getDefaultMessage(),
+						(first, second) -> first));
 
 		final ApiError body = new ApiError(Instant.now(), HttpStatus.BAD_REQUEST.value(),
 				HttpStatus.BAD_REQUEST.getReasonPhrase(), "Validation failed", errors);

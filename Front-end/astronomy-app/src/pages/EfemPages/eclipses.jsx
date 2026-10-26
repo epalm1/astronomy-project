@@ -32,8 +32,6 @@ function EclipsesPage() {
       !Number.isInteger(Number(endYear)) ||
       Number(startYear) > Number(endYear)
     ) {
-      setData([]);
-      setError('Algusaasta ei saa olla lõppaastast suurem.');
       return;
     }
 
@@ -49,23 +47,26 @@ function EclipsesPage() {
           endYear: String(endYear)
         });
 
-        const response = await fetch(`http://localhost:8080/api/eclipses?${params}`);
+        const response = await fetch(`http://localhost:8080/api/eclipses?${params}`, {
+          signal: controller.signal
+        });
 
         if (!response.ok) {
           throw new Error(`Server returned ${response.status}`);
         }
 
         const result = await response.json();
-
         console.log('Eclipses API response:', result);
-
         setData(result);
       } catch (err) {
-        setError('Varjutuste laadimine ebaõnnestus.');
-        setData([]);
-        console.error('Failed to load eclipses:', err);
+        if (err.name !== 'AbortError') {
+          setError('Varjutuste laadimine ebaõnnestus.');
+          console.error('Failed to load eclipses:', err);
+        }
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     }
 

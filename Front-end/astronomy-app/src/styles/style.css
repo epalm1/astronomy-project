@@ -1,181 +1,209 @@
 :root {
-    --textcolor: #888;
-    --hovercolor: #00ccff88;
-    --bgcolor: #00ccff22;
+  --textcolor: #888;
+  --hovercolor: #00ccff88;
+  --bgcolor: #00ccff22;
 }
 
 * {
-    font-family: 'Roboto', sans-serif;
-    color: var(--textcolor);
-    box-sizing: border-box;
-    border-collapse: collapse;
+  font-family: 'Roboto', sans-serif;
+  color: var(--textcolor);
+  box-sizing: border-box;
+  border-collapse: collapse;
 }
 
 body {
-    background-color: transparent;
-    margin: 0 auto;
+  background-color: transparent;
+  margin: 0 auto;
 }
 
 /* Lehespetsiifilised laiused */
-body.seasons-body, body.quadratuurid-body { max-width: 700px; min-width: 250px; }
-body.moon-body, body.apsides-body { max-width: 600px; min-width: 220px; }
+body.seasons-body,
+body.quadratuurid-body {
+  max-width: 700px;
+  min-width: 250px;
+}
+body.moon-body,
+body.apsides-body {
+  max-width: 600px;
+  min-width: 220px;
+}
 
 svg {
-    display: block;
-    margin: auto;
+  display: block;
+  margin: auto;
 }
 
 /* Kursorile reageerivad elemendid */
 .hoverblock {
-    background-color: var(--bgcolor);
-    display: flex;
-    flex-grow: 1;
+  background-color: var(--bgcolor);
+  display: flex;
+  flex-grow: 1;
 }
 
 .hoverblock:hover {
-    background-color: var(--hovercolor) !important;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
+  background-color: var(--hovercolor) !important;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
-.hoverblock:active, input:active, select:active {
-    filter: brightness(2);
+.hoverblock:active,
+input:active,
+select:active {
+  filter: brightness(2);
 }
 
 /* Päised ja navigeerimine */
-#seasons_head, #moonphase_head, #apsides_head, #quadratuurid_head {
-    width: 100%;
-    display: flex;
+#seasons_head,
+#moonphase_head,
+#apsides_head,
+#quadratuurid_head {
+  width: 100%;
+  display: flex;
 }
 
 #apsides_head .hoverblock:first-child,
 #seasons_head .hoverblock:first-child,
 #moonphase_head .hoverblock:first-child,
 #quadratuurid_head .hoverblock:first-child {
-    padding: 10px;
-    border-top-left-radius: 20px;
+  padding: 10px;
+  border-top-left-radius: 20px;
 }
 
 #apsides_head .hoverblock:last-child,
 #seasons_head .hoverblock:last-child,
 #moonphase_head .hoverblock:last-child,
 #quadratuurid_head .hoverblock:last-child {
-    padding: 10px;
-    border-top-right-radius: 20px;
+  padding: 10px;
+  border-top-right-radius: 20px;
 }
 
 .seasons-center-box {
-    padding: 10px;
-    text-align: center;
-    background-color: var(--bgcolor);
+  padding: 10px;
+  text-align: center;
+  background-color: var(--bgcolor);
 }
 
 .seasons-inputs-wrapper {
-    display: inline-block;
-    white-space: nowrap;
+  display: inline-block;
+  white-space: nowrap;
 }
 
-input, select {
-    background-color: transparent;
-    border: none;
-    vertical-align: baseline;
-    font-size: medium;
-    font-weight: bold;
+input,
+select {
+  background-color: transparent;
+  border: none;
+  vertical-align: baseline;
+  font-size: medium;
+  font-weight: bold;
 }
 
 /* Sisendite laiused */
-#seasons_startyear, #seasons_endyear, #apsides_startyear, #apsides_endyear, #quadratuurid_startyear, #quadratuurid_endyear {
-    width: 55px;
+#seasons_startyear,
+#seasons_endyear,
+#apsides_startyear,
+#apsides_endyear,
+#quadratuurid_startyear,
+#quadratuurid_endyear {
+  width: 55px;
 }
 #moonphase_year {
-    width: 60px;
+  width: 60px;
 }
 
-#seasons_tz, #moonphase_tz, #apsides_tz, #quadratuurid_tz {
-    width: 80px;
-    margin-top: 2px;
+#seasons_tz,
+#moonphase_tz,
+#apsides_tz,
+#quadratuurid_tz {
+  width: 80px;
+  margin-top: 2px;
 }
 
-input:hover, select:hover {
-    background-color: var(--hovercolor);
-    text-decoration: underline;
-    cursor: pointer;
+input:hover,
+select:hover {
+  background-color: var(--hovercolor);
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 /* Sisu ja tabelid */
-#seasons_content, #moonphase_content, #apsides_content, #quadratuurid_content {
-    border: 10px solid var(--bgcolor);
-    border-top: 5px solid var(--bgcolor);
-    border-radius: 0 0 20px 20px;
+#seasons_content,
+#moonphase_content,
+#apsides_content,
+#quadratuurid_content {
+  border: 10px solid var(--bgcolor);
+  border-top: 5px solid var(--bgcolor);
+  border-radius: 0 0 20px 20px;
 }
 
 table {
-    width: 100%;
-    height: 100%;
-    cursor: text;
+  width: 100%;
+  height: 100%;
+  cursor: text;
 }
 
 thead tr {
-    background-color: transparent;
+  background-color: transparent;
 }
 
-td, th { 
-    padding: 2px 7px; 
+td,
+th {
+  padding: 2px 7px;
 }
 
 th {
-    font-size: smaller;
+  font-size: smaller;
 }
 
-tr:nth-child(odd) { 
-    background-color: #00ccff11; 
+tr:nth-child(odd) {
+  background-color: #00ccff11;
 }
 
-tr.currentyear { 
-    background-color: #ffff0022; 
+tr.currentyear {
+  background-color: #ffff0022;
 }
 
-td.seasontime, td.quartertime { 
-    text-align: center;
+td.seasontime,
+td.quartertime {
+  text-align: center;
 }
 
 td.style2 {
-    background-color: #00ccff11;
+  background-color: #00ccff11;
 }
 
 .datefield_normal {
-    display: inline-block;
-    text-align: right;
-    margin-left: 5px;
+  display: inline-block;
+  text-align: right;
+  margin-left: 5px;
 }
 
 .datefield_small {
-    display: inline-block;
-    text-align: right;
-    margin-left: 0;
-    font-size: xx-small;
+  display: inline-block;
+  text-align: right;
+  margin-left: 0;
+  font-size: xx-small;
 }
 
 .timefield_normal {
-    display: inline-block;
-    text-align: right;
-    width: 35px;
-    font-size: smaller;
+  display: inline-block;
+  text-align: right;
+  width: 35px;
+  font-size: smaller;
 }
 
 .timefield_small {
-    display: inline-block;
-    text-align: right;
-    width: 25px;
-    font-size: xx-small;
+  display: inline-block;
+  text-align: right;
+  width: 25px;
+  font-size: xx-small;
 }
 
 .heading_normal {
-    font-size: medium;
+  font-size: medium;
 }
 
 .heading_small {
-    font-size: x-small;
+  font-size: x-small;
 }

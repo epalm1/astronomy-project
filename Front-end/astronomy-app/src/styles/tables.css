@@ -1,40 +1,39 @@
-
 /* --- Header Controls Layout --- */
-.table-header{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-bottom: 24px;
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
 /* Hover Blocks (Navigation arrows) */
 .hoverblock {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
-    opacity: 0.7;
-    transition: opacity 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
 }
 
 .hoverblock:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 /* Center Box for Years and Timezone Selection */
 .center-box {
-    text-align: center;
-    font-size: 0.95rem;
-    color: var(--textcolor);
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--textcolor);
 }
 
 .input-wrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    margin: 4px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 4px 0;
 }
 
 /*!* Inputs & Select Elements *!*/
@@ -50,34 +49,33 @@
 /*}*/
 
 .timezone-select {
-    margin-top: 4px;
-    padding: 4px 8px;
-    border: 1px solid var(--bgcolor, #ccc);
-    border-radius: 4px;
-    background-color: var(--bgcolor, #fff);
-    color: var(--textcolor);
+  margin-top: 4px;
+  padding: 4px 8px;
+  border: 1px solid var(--bgcolor, #ccc);
+  border-radius: 4px;
+  background-color: var(--bgcolor, #fff);
+  color: var(--textcolor);
 }
-
 
 /* --- Content & Table Layout --- */
 .table-content {
-    width: 100%;
-    overflow-x: auto;
+  width: 100%;
+  overflow-x: auto;
 }
 
 .custom-data-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
 }
 
 th,
 td {
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--bgcolor, #eee);
-    color: var(--textcolor);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--bgcolor, #eee);
+  color: var(--textcolor);
 }
 
 .heading_normal {
-    font-weight: 600;
+  font-weight: 600;
 }

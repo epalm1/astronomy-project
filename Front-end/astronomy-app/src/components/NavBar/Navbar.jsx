@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Hobiastronoomia from './hobiastronoomia.jsx';
 import Astronoomiafestival from './astronoomiafestival.jsx';
+import Efemeriidid from 'Front-end/astronomy-app/src/pages/efemeriidid.jsx';
 import Selts from './selts.jsx';
 
 function Navbar() {
@@ -36,7 +37,7 @@ function Navbar() {
                                 </li>
                                 <li>
                                     <Link
-                                        to="/hobiastronoomia/efemeriidid"
+                                        to="/efemeriidid"
                                         className="dropdown-link"
                                     >
                                         Efemeriidid
@@ -69,6 +70,7 @@ function Navbar() {
                 <Route path="/hobiastronoomia" element={<Hobiastronoomia />}/>
                 <Route path="/astronoomiafestival" element={<Astronoomiafestival />}/>
                 <Route path="/selts" element={<Selts />}/>
+                <Route path="/efemeriidid" element={<Efemeriidid />}/>
             </Routes>
         </BrowserRouter>
     );

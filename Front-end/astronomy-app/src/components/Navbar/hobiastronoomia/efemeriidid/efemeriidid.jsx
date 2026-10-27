@@ -10,6 +10,7 @@ function Efemeriidid() {
     <div>
       <p>Siit leiab erinevad Efemeriidid</p>
       <Link to="eclipses">Varjutused</Link>
+      <br />
       <Link to="quadratures">Kvadratuurid</Link>
       <Routes>
         <Route path="eclipses" element={<EclipsesPage />} />

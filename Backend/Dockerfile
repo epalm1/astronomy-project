@@ -2,6 +2,8 @@ FROM amazoncorretto:25
 
 WORKDIR /app
 
+RUN yum install -y tar gzip
+
 COPY . .
 
 RUN chmod +x mvnw

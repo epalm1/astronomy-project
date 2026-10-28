@@ -24,7 +24,7 @@ function QuadraturesPage() {
           endYear: String(endYear)
         });
 
-        const response = await fetch(`http://localhost:8080/api/quadratures?${params}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/quadratures?${params}`, {
           signal: controller.signal
         });
 

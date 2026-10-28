@@ -47,7 +47,7 @@ function EclipsesPage() {
           endYear: String(endYear)
         });
 
-        const response = await fetch(`http://localhost:8080/api/eclipses?${params}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/eclipses?${params}`, {
           signal: controller.signal
         });
 

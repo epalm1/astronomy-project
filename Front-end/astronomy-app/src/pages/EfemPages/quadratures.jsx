@@ -52,7 +52,7 @@ function QuadraturesPage() {
 
   const tableData = data.map((item) => ({
     id: item.id,
-    planet: item.outerPlanetId,
+    planet: item.planetName,
     angle: item.phaseAngle,
     date: item.time ? new Date(item.time).toLocaleString('et-EE') : ''
   }));

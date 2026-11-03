@@ -44,7 +44,7 @@ public class QuadratureService {
 	}
 
 	private QuadratureResponse toResponse(Quadrature quadrature) {
-		return new QuadratureResponse(quadrature.getId(), quadrature.getOuterPlanet().getId(),
+		return new QuadratureResponse(quadrature.getId(), quadrature.getOuterPlanet().getName(),
 				quadrature.getPhaseAngle(), quadrature.getTime());
 	}
 }

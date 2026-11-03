@@ -64,7 +64,7 @@ function QuadraturesPage() {
   const columns = [
     { label: 'Planeet', key: 'planet', align: 'left' },
     { label: 'Faasinurk', key: 'angle', align: 'center' },
-    { label: 'Kuupaev', key: 'date', align: 'right' }
+    { label: 'Kuupäev', key: 'date', align: 'right' }
   ];
   return (
     <div className="quadraturesPage">

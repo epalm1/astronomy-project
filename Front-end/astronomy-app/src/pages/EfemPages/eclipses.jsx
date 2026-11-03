@@ -17,10 +17,10 @@ function EclipsesPage() {
   };
 
   const columns = [
-    { label: 'Varjutus', key: 'eclipse', align: 'left' },
-    { label: 'Varjutuse algus', key: 'start', align: 'center' },
-    { label: 'Varjutuse tipp', key: 'peak', align: 'center' },
-    { label: 'Varjutuse lõpp', key: 'end', align: 'center' },
+    { label: 'Varjutuse tüüp', key: 'eclipse', align: 'left' },
+    { label: 'Algus', key: 'start', align: 'center' },
+    { label: 'Tipp', key: 'peak', align: 'center' },
+    { label: 'Lõpp', key: 'end', align: 'center' },
     { label: 'Kestus', key: 'dur', align: 'center' },
     { label: 'Asukoht', key: 'loc', align: 'center' },
     { label: 'Nähtavuse protsent', key: 'percent', align: 'right' }
@@ -89,7 +89,7 @@ function EclipsesPage() {
         handleTzChange={(e) => setTimeZone(e.target.value)}
       />
 
-      {loading && <p>Laadin varjutusi...</p>}
+      {loading && <p>Laen varjutusi...</p>}
       {error && <p role="alert">{error}</p>}
 
       {!loading && !error && <DataTable columns={columns} data={data} />}

@@ -207,3 +207,12 @@ td.style2 {
 .heading_small {
   font-size: x-small;
 }
+#Contact{
+  position: fixed;
+  left: 10%;
+  bottom: 0;
+  text-align: left;
+  width: 100%;
+  background-color: #16171d;
+  color: aliceblue;
+}

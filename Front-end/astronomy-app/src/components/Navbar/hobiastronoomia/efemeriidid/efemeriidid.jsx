@@ -9,9 +9,13 @@ function Efemeriidid() {
   return (
     <div>
       <p>Siit leiab erinevad Efemeriidid</p>
-      <Link to="eclipses">Varjutused</Link>
+
+      <Link to="/hobiastronoomia/efemeriidid/eclipses">Varjutused</Link>
+
       <br />
-      <Link to="quadratures">Kvadratuurid</Link>
+
+      <Link to="/hobiastronoomia/efemeriidid/quadratures">Kvadratuurid</Link>
+
       <Routes>
         <Route path="eclipses" element={<EclipsesPage />} />
         <Route path="quadratures" element={<QuadraturesPage />} />
@@ -19,4 +23,5 @@ function Efemeriidid() {
     </div>
   );
 }
+
 export default Efemeriidid;

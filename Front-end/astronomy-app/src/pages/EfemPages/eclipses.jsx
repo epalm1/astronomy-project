@@ -108,7 +108,7 @@ function EclipsesPage() {
         handleTzChange={(e) => setTimeZone(e.target.value)}
       />
 
-      {loading && <p>Laen varjutusi...</p>}
+      {loading && <p>Laen varjutusi</p>}
 
       {error && <p role="alert">Viga andmete laadimisel: {error}</p>}
 

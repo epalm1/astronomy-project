@@ -24,12 +24,9 @@ function EclipsesPage() {
           endYear: String(endYear)
         });
 
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/eclipses?${params}`,
-          {
-            signal: controller.signal
-          }
-        );
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/eclipses?${params}`, {
+          signal: controller.signal
+        });
 
         if (!response.ok) {
           throw new Error(`HTTP error: ${response.status}`);
@@ -57,15 +54,10 @@ function EclipsesPage() {
   const formatDateTime = (dateTime) => {
     if (!dateTime) return '';
 
-    const utcDate = new Date(
-      dateTime.endsWith('Z') ? dateTime : `${dateTime}Z`
-    );
+    const utcDate = new Date(dateTime.endsWith('Z') ? dateTime : `${dateTime}Z`);
 
     return utcDate.toLocaleString('et-EE', {
-      timeZone:
-        timeZone === 'UTC'
-          ? 'UTC'
-          : Intl.DateTimeFormat().resolvedOptions().timeZone,
+      timeZone: timeZone === 'UTC' ? 'UTC' : Intl.DateTimeFormat().resolvedOptions().timeZone,
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
@@ -120,9 +112,7 @@ function EclipsesPage() {
 
       {error && <p role="alert">Viga andmete laadimisel: {error}</p>}
 
-      {!loading && !error && (
-        <DataTable columns={columns} data={tableData} />
-      )}
+      {!loading && !error && <DataTable columns={columns} data={tableData} />}
     </div>
   );
 }

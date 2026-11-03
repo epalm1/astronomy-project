@@ -55,23 +55,18 @@ function QuadraturesPage() {
     planet: item.planetName,
     angle: item.phaseAngle,
     date: item.time
-        ? new Date(
-            item.time.endsWith('Z') ? item.time : `${item.time}Z`
-          ).toLocaleString('et-EE', {
-            timeZone:
-              timeZone === 'UTC'
-                ? 'UTC'
-                : Intl.DateTimeFormat().resolvedOptions().timeZone,
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false
-          })
-        : ''
-    }));
+      ? new Date(item.time.endsWith('Z') ? item.time : `${item.time}Z`).toLocaleString('et-EE', {
+          timeZone: timeZone === 'UTC' ? 'UTC' : Intl.DateTimeFormat().resolvedOptions().timeZone,
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        })
+      : ''
+  }));
 
   const handleShiftYears = (amount) => {
     setStartYear((prev) => Number(prev) + amount);

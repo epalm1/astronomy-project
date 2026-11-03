@@ -40,7 +40,9 @@ public class EclipseService {
 	private EclipseResponse toResponse(Eclipse eclipse) {
 		final String eclipseType = Boolean.TRUE.equals(eclipse.getType()) ? "kuu" : "päike";
 
-		final String location = Boolean.TRUE.equals(eclipse.getObservableInEst()) ? "Eestist vaadeldav" : "pole Eestist vaadeldav";
+		final String location = Boolean.TRUE.equals(eclipse.getObservableInEst())
+				? "Eestist vaadeldav"
+				: "pole Eestist vaadeldav";
 
 		final Duration duration = Duration.between(eclipse.getStartTime(), eclipse.getEndTime());
 

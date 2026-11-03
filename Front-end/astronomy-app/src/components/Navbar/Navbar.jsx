@@ -4,6 +4,8 @@ import Hobiastronoomia from './hobiastronoomia.jsx';
 import Astronoomiafestival from './astronoomiafestival.jsx';
 import Efemeriidid from './hobiastronoomia/efemeriidid/efemeriidid.jsx';
 import Selts from './selts.jsx';
+import EclipsesPage from "./hobiastronoomia/efemeriidid/eclipses.jsx";
+import QuadraturesPage from "./hobiastronoomia/efemeriidid/quadratures.jsx";
 
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -22,23 +24,23 @@ function Navbar() {
             onMouseEnter={() => setDropdownOpen(true)}
             onMouseLeave={() => setDropdownOpen(false)}
           >
-            <Link to="/hobiastronoomia" className="nav-link" onFocus={() => setDropdownOpen(true)}>
+            <Link to="/hobiastro" className="nav-link" onFocus={() => setDropdownOpen(true)}>
               Hobiastronoomia
             </Link>
             {dropdownOpen && (
               <ul className="dropdown-menu">
                 <li>
-                  <Link to="/hobiastronoomia/taevaulevaade" className="dropdown-link">
+                  <Link to="/hobiastro/taevaulevaade" className="dropdown-link">
                     Taevaülevaade
                   </Link>
                 </li>
                 <li>
-                  <Link to="/hobiastronoomia/efemeriidid" className="dropdown-link">
+                  <Link to="/hobiastro/efem" className="dropdown-link">
                     Efemeriidid
                   </Link>
                 </li>
                 <li>
-                  <Link to="/hobiastronoomia/teleskoobid" className="dropdown-link">
+                  <Link to="/hobiastro/teleskoobid" className="dropdown-link">
                     Teleskoobid
                   </Link>
                 </li>
@@ -46,7 +48,7 @@ function Navbar() {
             )}
           </li>
           <li className="nav-item">
-            <Link to="/astronoomiafestival" className="nav-link">
+            <Link to="/astrofest" className="nav-link">
               Astronoomiafestival
             </Link>
           </li>
@@ -58,10 +60,14 @@ function Navbar() {
         </ul>
       </nav>
       <Routes>
-        <Route path="/hobiastronoomia" element={<Hobiastronoomia />} />
-        <Route path="/astronoomiafestival" element={<Astronoomiafestival />} />
+        <Route path="/hobiastro" element={<Hobiastronoomia />} />
+        <Route path="/astrofestl" element={<Astronoomiafestival />} />
         <Route path="/selts" element={<Selts />} />
-        <Route path="/hobiastronoomia/efemeriidid/*" element={<Efemeriidid />} />
+        <Route path="/hobiastro/efem" element={<Efemeriidid />}>
+          <Route path="/hobiastro/efem/eclipses" element={<EclipsesPage />} />
+          <Route path="/hobiastro/efem/quadratures" element={<QuadraturesPage />} />
+        </Route>
+
       </Routes>
     </BrowserRouter>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import DateFilterHeader from '../../components/DateFilterHeader';
-import DataTable from '../../components/DataTable';
-import '../../styles/tables.css';
+import DateFilterHeader from '../../../DateFilterHeader.jsx';
+import DataTable from '../../../DataTable.jsx';
+import '../../../../styles/tables.css';
 
 function QuadraturesPage() {
   const [startYear, setStartYear] = useState(2020);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import DateFilterHeader from '../../components/DateFilterHeader.jsx';
-import DataTable from '../../components/DataTable.jsx';
-import '../../styles/tables.css';
+import DateFilterHeader from '../../../DateFilterHeader.jsx';
+import DataTable from '../../../DataTable.jsx';
+import '../../../../styles/tables.css';
 
 function EclipsesPage() {
   const [startYear, setStartYear] = useState(2020);
@@ -47,26 +47,23 @@ function EclipsesPage() {
           endYear: String(endYear)
         });
 
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/eclipses?${params}`, {
-          signal: controller.signal
-        });
+        const response = await fetch(`http://localhost:8080/api/eclipses?${params}`);
 
         if (!response.ok) {
           throw new Error(`Server returned ${response.status}`);
         }
 
         const result = await response.json();
+
         console.log('Eclipses API response:', result);
+
         setData(result);
       } catch (err) {
-        if (err.name !== 'AbortError') {
-          setError('Varjutuste laadimine ebaõnnestus.');
-          console.error('Failed to load eclipses:', err);
-        }
+        setError('Varjutuste laadimine ebaõnnestus.');
+        setData([]);
+        console.error('Failed to load eclipses:', err);
       } finally {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
+        setLoading(false);
       }
     }
 
@@ -88,6 +85,7 @@ function EclipsesPage() {
         handleShiftYears={handleShiftYears}
         handleTzChange={(e) => setTimeZone(e.target.value)}
       />
+      <p>tekste</p>
 
       {loading && <p>Laadin varjutusi...</p>}
       {error && <p role="alert">{error}</p>}

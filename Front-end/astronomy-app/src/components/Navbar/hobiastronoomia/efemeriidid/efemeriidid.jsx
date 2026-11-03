@@ -1,21 +1,21 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 // import Eclipses from '././././pages/EfemPages/eclipses.jsx';
-import EclipsesPage from '../../../../pages/EfemPages/eclipses.jsx';
+import EclipsesPage from './eclipses.jsx';
 // import Eclipses from "../../../../pages/EfemPages/eclipses.jsx";
-import QuadraturesPage from '../../../../pages/EfemPages/quadratures.jsx';
+import QuadraturesPage from './quadratures.jsx';
 
 function Efemeriidid() {
   return (
     <div>
       <p>Siit leiab erinevad Efemeriidid</p>
-      <Link to="eclipses">Varjutused</Link>
+
+      <Link to="/hobiastro/efem/eclipses">Varjutused</Link>
       <br />
-      <Link to="quadratures">Kvadratuurid</Link>
-      <Routes>
-        <Route path="eclipses" element={<EclipsesPage />} />
-        <Route path="quadratures" element={<QuadraturesPage />} />
-      </Routes>
+      <Link to="/hobiastro/efem/quadratures">Kvadratuurid</Link>
+      <div className="subpage-content">
+          <Outlet/>
+      </div>
     </div>
   );
 }

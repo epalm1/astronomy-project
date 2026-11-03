@@ -44,8 +44,8 @@ function DateFilterHeader({
         <br />
         Kellaaeg:
         <select className="timezone-select" value={timezone} onChange={handleTzChange}>
-          <option value="loc">kohalik</option>
-          <option value="utc">UTC</option>
+          <option value="local">kohalik</option>
+          <option value="UTC">UTC</option>
         </select>
       </div>
       <div className="hoverblock" title="1 aasta edasi" onClick={() => handleShiftYears(1)}>

@@ -6,7 +6,7 @@ import '../../styles/tables.css';
 function QuadraturesPage() {
   const [startYear, setStartYear] = useState(2020);
   const [endYear, setEndYear] = useState(2026);
-  const [timeZone, setTimeZone] = useState('loc');
+  const [timeZone, setTimeZone] = useState('local');
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -54,8 +54,24 @@ function QuadraturesPage() {
     id: item.id,
     planet: item.planetName,
     angle: item.phaseAngle,
-    date: item.time ? new Date(item.time).toLocaleString('et-EE') : ''
-  }));
+    date: item.time
+        ? new Date(
+            item.time.endsWith('Z') ? item.time : `${item.time}Z`
+          ).toLocaleString('et-EE', {
+            timeZone:
+              timeZone === 'UTC'
+                ? 'UTC'
+                : Intl.DateTimeFormat().resolvedOptions().timeZone,
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+          })
+        : ''
+    }));
 
   const handleShiftYears = (amount) => {
     setStartYear((prev) => Number(prev) + amount);

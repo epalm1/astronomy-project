@@ -23,7 +23,7 @@ public class EclipseService {
 
 	public List<EclipseResponse> findByYearRange(int startYear, int endYear) {
 		if (startYear > endYear) {
-			throw new IllegalArgumentException("Start year must not be after end year");
+			throw new IllegalArgumentException("Algusaasta ei saa olla peale lõppaastat");
 		}
 
 		final LocalDateTime startDate = LocalDateTime.of(startYear, 1, 1, 0, 0);
@@ -38,9 +38,11 @@ public class EclipseService {
 	}
 
 	private EclipseResponse toResponse(Eclipse eclipse) {
-		final String eclipseType = Boolean.TRUE.equals(eclipse.getType()) ? "lunar" : "solar";
+		final String eclipseType = Boolean.TRUE.equals(eclipse.getType()) ? "kuu" : "päike";
 
-		final String location = Boolean.TRUE.equals(eclipse.getObservableInEst()) ? "est" : "other";
+		final String location = Boolean.TRUE.equals(eclipse.getObservableInEst())
+				? "Eestist vaadeldav"
+				: "pole Eestist vaadeldav";
 
 		final Duration duration = Duration.between(eclipse.getStartTime(), eclipse.getEndTime());
 

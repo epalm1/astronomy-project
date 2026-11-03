@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import DateFilterHeader from '../../components/DateFilterHeader';
-import DataTable from '../../components/DataTable';
-import '../../styles/tables.css';
+import DateFilterHeader from '../../../DateFilterHeader';
+import DataTable from '../../../DataTable';
+import '../../../../styles/tables.css';
 
 function EclipsesPage() {
   const [startYear, setStartYear] = useState(2020);
@@ -11,20 +11,6 @@ function EclipsesPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleShiftYears = (amount) => {
-    setStartYear((prev) => Number(prev) + amount);
-    setEndYear((prev) => Number(prev) + amount);
-  };
-
-  const columns = [
-    { label: 'Varjutus', key: 'eclipse', align: 'left' },
-    { label: 'Varjutuse algus', key: 'start', align: 'center' },
-    { label: 'Varjutuse tipp', key: 'peak', align: 'center' },
-    { label: 'Varjutuse lõpp', key: 'end', align: 'center' },
-    { label: 'Kestus', key: 'dur', align: 'center' },
-    { label: 'Asukoht', key: 'loc', align: 'center' },
-    { label: 'Nähtavuse protsent', key: 'percent', align: 'right' }
-  ];
 
   useEffect(() => {
     if (

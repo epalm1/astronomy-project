@@ -6,6 +6,7 @@ import Efemeriidid from './hobiastronoomia/efemeriidid/efemeriidid.jsx';
 import Selts from './selts.jsx';
 import EclipsesPage from "./hobiastronoomia/efemeriidid/eclipses.jsx";
 import QuadraturesPage from "./hobiastronoomia/efemeriidid/quadratures.jsx";
+import "../../styles/navbar.css"
 
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -20,7 +21,7 @@ function Navbar() {
       <nav className="navbar" onBlur={handleBlur}>
         <ul className="navList">
           <li
-            className="nav-item dropdown"
+            className="nav-item-dropdown"
             onMouseEnter={() => setDropdownOpen(true)}
             onMouseLeave={() => setDropdownOpen(false)}
           >

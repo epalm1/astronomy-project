@@ -1,0 +1,13 @@
+.navbar {
+
+}
+
+.navList{
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-item-dropdown{
+    display: flex;
+    flex-direction: column;
+}

@@ -21,7 +21,7 @@ function Navbar() {
       <nav className="navbar" onBlur={handleBlur}>
         <ul className="navList">
           <li
-            className="nav-item-dropdown"
+            className="nav-item"
             onMouseEnter={() => setDropdownOpen(true)}
             onMouseLeave={() => setDropdownOpen(false)}
           >

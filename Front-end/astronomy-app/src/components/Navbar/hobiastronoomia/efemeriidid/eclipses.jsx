@@ -11,7 +11,6 @@ function EclipsesPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-
   useEffect(() => {
     if (
       !Number.isInteger(Number(startYear)) ||

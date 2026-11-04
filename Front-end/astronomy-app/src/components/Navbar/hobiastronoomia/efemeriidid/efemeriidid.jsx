@@ -14,7 +14,7 @@ function Efemeriidid() {
       <br />
       <Link to="/hobiastro/efem/quadratures">Kvadratuurid</Link>
       <div className="subpage-content">
-          <Outlet/>
+        <Outlet />
       </div>
     </div>
   );

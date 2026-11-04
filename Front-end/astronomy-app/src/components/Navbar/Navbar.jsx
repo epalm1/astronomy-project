@@ -81,62 +81,59 @@ import { Link, NavLink } from 'react-router-dom';
 import '../../styles/navbar.css';
 
 function Navbar() {
-    const [hobbiesOpen, setHobbiesOpen] = useState(false);
-    const [ephemerisOpen, setEphemerisOpen] = useState(false);
+  const [hobbiesOpen, setHobbiesOpen] = useState(false);
+  const [ephemerisOpen, setEphemerisOpen] = useState(false);
 
-    // Sulgeb kõik menüüd
-    const handleCloseAll = () => {
-        setHobbiesOpen(false);
-        setEphemerisOpen(false);
-    };
+  // Sulgeb kõik menüüd
+  const handleCloseAll = () => {
+    setHobbiesOpen(false);
+    setEphemerisOpen(false);
+  };
 
   return (
-      <nav className="site-navbar">
+    <nav className="site-navbar">
+      <Link to="/" className="nav-link">
+        Avaleht
+      </Link>
 
-          <Link to="/" className="nav-link">Avaleht</Link>
+      {/* Dropdown Menu Container */}
+      {/* 1. Tase: Hobiastronoomia dropdown */}
+      <div className="dropdown">
+        <button onClick={() => setHobbiesOpen(!hobbiesOpen)} className="dropdown-btn">
+          Hobiastronoomia ▾
+        </button>
 
-          {/* Dropdown Menu Container */}
-          {/* 1. Tase: Hobiastronoomia dropdown */}
-          <div className="dropdown">
+        {hobbiesOpen && (
+          <div className="dropdown-menu">
+            {/* 2. Tase: Efemeriidid alam-dropdown */}
+            <div className="dropdown-submenu">
               <button
-                  onClick={() => setHobbiesOpen(!hobbiesOpen)}
-                  className="dropdown-btn"
+                onClick={(e) => {
+                  e.stopPropagation(); // Hoiab ära ülemise menüü sulgumise
+                  setEphemerisOpen(!ephemerisOpen);
+                }}
+                className="dropdown-sub-btn"
               >
-                  Hobiastronoomia ▾
+                Efemeriidid ▾
               </button>
 
-              {hobbiesOpen && (
-                  <div className="dropdown-menu">
-
-                      {/* 2. Tase: Efemeriidid alam-dropdown */}
-                      <div className="dropdown-submenu">
-                          <button
-                              onClick={(e) => {
-                                  e.stopPropagation(); // Hoiab ära ülemise menüü sulgumise
-                                  setEphemerisOpen(!ephemerisOpen);
-                              }}
-                              className="dropdown-sub-btn">
-                              Efemeriidid ▾
-                          </button>
-
-                          {ephemerisOpen && (
-                              <div className="submenu-items">
-                                  <Link to="/eclipses" onClick={handleCloseAll}>
-                                      Varjutused
-                                  </Link>
-                                  <Link to="/quadratures" onClick={handleCloseAll}>
-                                      Kvadratuurid
-                                  </Link>
-                              </div>
-                          )}
-                      </div>
-
-                      {/* Siia saad vajadusel lisada veel Hobiastronoomia valikuid */}
-                  </div>
+              {ephemerisOpen && (
+                <div className="submenu-items">
+                  <Link to="/eclipses" onClick={handleCloseAll}>
+                    Varjutused
+                  </Link>
+                  <Link to="/quadratures" onClick={handleCloseAll}>
+                    Kvadratuurid
+                  </Link>
+                </div>
               )}
-          </div>
+            </div>
 
-      </nav>
+            {/* Siia saad vajadusel lisada veel Hobiastronoomia valikuid */}
+          </div>
+        )}
+      </div>
+    </nav>
   );
 }
 

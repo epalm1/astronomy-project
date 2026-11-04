@@ -1,22 +1,31 @@
 import React from 'react';
-import Navbar from './components/Navbar/Navbar.jsx';
-// import Eclipses from "./pages/eclipses";
-// import Quadratures from "./pages/eclipses";
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header.jsx';
+import Navbar from './components/Navbar/Navbar.jsx';
 import Footer from './components/Footer.jsx';
-import { useState } from 'react';
+
+import EclipsesPage from './components/Navbar/hobiastronoomia/efemeriidid/eclipses.jsx';
+import QuadraturesPage from "./components/Navbar/hobiastronoomia/efemeriidid/quadratures.jsx";
+
 
 function App() {
   return (
+      <BrowserRouter>
     <div className="App">
       <Header />
       <Navbar />
-      <br />
-      {/*<p>Tere tulemast Eesti Astronoomia seltsi uuele kodulehele. Siin leidub huvitavat ja kasulikku nii algajale astronoomia huvilisele kui ka kogenud taevavaatlejale.</p>*/}
-      <br />
+
+        <main>
+            <Routes>
+                <Route path="/" element={<div>Tere tulemast Eesti Astronoomia Seltsi uuele kodulehele. Siin leidub huvitavat ja kasulikku nii algajale astronoomia huvilisele kui ka kogenud taevavaatlejale.</div>} />
+                <Route path="/eclipses" element={<EclipsesPage />} />
+            </Routes>
+        </main>
+
       <Footer />
     </div>
+      </BrowserRouter>
+
   );
 }
 

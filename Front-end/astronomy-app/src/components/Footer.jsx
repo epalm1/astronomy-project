@@ -1,9 +1,10 @@
 import React from 'react';
+import '../styles/footer.css';
 
 function Footer() {
   return (
-    <footer>
-      <div id="Contact">
+    <footer className="site-footer">
+      <div>
         <p>Eesti Astronoomia Selts</p>
         <a href="selts@astronoomia.ee">selts@astronoomia.ee</a>
         <p>Tartu Observatoorium</p>

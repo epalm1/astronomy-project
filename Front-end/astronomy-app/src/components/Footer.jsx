@@ -4,7 +4,7 @@ import '../styles/footer.css';
 function Footer() {
   return (
     <footer className="site-footer">
-      <div>
+      <div className="footer-text">
         <p>Eesti Astronoomia Selts</p>
         <a href="selts@astronoomia.ee">selts@astronoomia.ee</a>
         <p>Tartu Observatoorium</p>

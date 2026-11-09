@@ -112,18 +112,33 @@ function Navbar() {
                   e.stopPropagation(); // Hoiab ära ülemise menüü sulgumise
                   setEphemerisOpen(!ephemerisOpen);
                 }}
-                className="dropdown-sub-btn"
-              >
+                className="dropdown-sub-btn">
                 Efemeriidid ▾
               </button>
 
               {ephemerisOpen && (
                 <div className="submenu-items">
+                  <Link to="/rise_set_transit" onClick={handleCloseAll}>
+                    Tõus, loojang ja meridiaaniületus
+                  </Link>
                   <Link to="/eclipses" onClick={handleCloseAll}>
                     Varjutused
                   </Link>
+                  <Link to="/moonphases" onClick={handleCloseAll}>
+                    Kuu faasid
+                  </Link>
                   <Link to="/quadratures" onClick={handleCloseAll}>
                     Kvadratuurid
+                  </Link>
+                  <Link to="/retrogrades" onClick={handleCloseAll}>
+                    Retrograadid
+                  </Link>
+                  <Link to="/conjunctions" onClick={handleCloseAll}>
+                    Ühendused
+                  </Link>
+
+                  <Link to="/constellations" onClick={handleCloseAll}>
+                    Üldised efemeriidid
                   </Link>
                 </div>
               )}

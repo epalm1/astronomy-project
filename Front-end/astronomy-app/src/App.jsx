@@ -6,6 +6,10 @@ import Footer from './components/Footer.jsx';
 import Calendar from './components/Calendar.jsx';
 import EclipsesPage from './components/Navbar/hobiastronoomia/efemeriidid/eclipses.jsx';
 import QuadraturesPage from './components/Navbar/hobiastronoomia/efemeriidid/quadratures.jsx';
+import RetrogradesPage from './components/Navbar/hobiastronoomia/efemeriidid/retrogrades.jsx';
+import ConjunctionsPage from "./components/Navbar/hobiastronoomia/efemeriidid/conjunctions.jsx";
+import ConstellationsPage from "./components/Navbar/hobiastronoomia/efemeriidid/constellations.jsx";
+// import ConjunctionsPage from "./components/Navbar/hobiastronoomia/efemeriidid/conjunctions.jsx";
 
 function App() {
   return (
@@ -15,6 +19,9 @@ function App() {
         <Navbar />
 
         <main>
+          <div className="calendar">
+            <Calendar />
+          </div>
           <Routes>
             <Route
               path="/"
@@ -25,13 +32,15 @@ function App() {
                 </div>
               }
             />
+
             <Route path="/eclipses" element={<EclipsesPage />} />
             <Route path="/quadratures" element={<QuadraturesPage />} />
+            <Route path="/retrogrades" element={<RetrogradesPage />} />
+            <Route path="/constellations" element={<ConstellationsPage />} />
+            <Route path="/conjunctions" element={<ConjunctionsPage />} />
           </Routes>
         </main>
-        <div className="calendar">
-          <Calendar />
-        </div>
+
         <div>
           <Footer />
         </div>

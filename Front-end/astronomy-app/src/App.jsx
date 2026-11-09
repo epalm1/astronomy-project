@@ -26,6 +26,7 @@ function App() {
               }
             />
             <Route path="/eclipses" element={<EclipsesPage />} />
+            <Route path="/quadratures" element={<QuadraturesPage />} />
           </Routes>
         </main>
         <div className="calendar">

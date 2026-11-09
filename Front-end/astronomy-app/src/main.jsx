@@ -4,6 +4,7 @@ import App from './App';
 import './styles/style.css';
 import './styles/tables.css';
 import './styles/index.css';
+import './styles/calendar.css';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -1,3 +1,4 @@
+import * as Astronomy from 'astronomy-engine';
 // ----------
 // Väärtused
 // ----------
@@ -169,7 +170,7 @@ const months_long_est = [
 // Funktsioonid
 // -------------
 // Viivitus
-function sleep(ms) {
+export function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
@@ -190,7 +191,7 @@ function sleep(ms) {
  *
  * @returns {string}    Vormindatud aeg tekstina
  */
-function timeformat(
+export function timeformat(
   t,
   daylabel = 'none',
   date = true,
@@ -289,7 +290,7 @@ function timeformat(
  * @arg {Date | AstroTime}  t
  * @returns {string}        Kuupäev kujul yyyy-mm-dd
  */
-function datestring(t) {
+export function datestring(t) {
   if (t instanceof Astronomy.AstroTime) {
     t = t.date;
   } else if ((!t) instanceof Date) {
@@ -305,7 +306,7 @@ function datestring(t) {
  * @arg {Date | AstroTime}  t
  * @returns {string}        Ajavöönd kujul ±hh:mm
  */
-function tzstring(t) {
+export function tzstring(t) {
   if (t instanceof Astronomy.AstroTime) {
     t = t.date;
   } else if ((!t) instanceof Date) {
@@ -329,7 +330,7 @@ function tzstring(t) {
  *
  * @returns {string}    Vormindatud arv tekstina
  */
-function numberformat(n, mode = 'rel', digits = 3, decimal = ',') {
+export function numberformat(n, mode = 'rel', digits = 3, decimal = ',') {
   if (mode == 'rel') {
     return n.toPrecision(digits).replace('.', decimal);
   } else if (mode == 'abs') {
@@ -370,7 +371,7 @@ function numberformat(n, mode = 'rel', digits = 3, decimal = ',') {
  * @arg {Date | AstroTime}  t
  * @returns {string}        'eile', 'täna' või 'homme'
  */
-function dayname(t) {
+export function dayname(t) {
   if (t instanceof Astronomy.AstroTime) {
     t = t.date;
   } else if ((!t) instanceof Date) {
@@ -414,7 +415,7 @@ function dayname(t) {
  *
  * @returns {string[]}  List kuupäevadega, formaaditud datestring-funktsiooniga
  */
-function daterange(t1, t2) {
+export function daterange(t1, t2) {
   let T1, T2;
   if (t1 instanceof Astronomy.AstroTime) {
     T1 = new Date(t1.date.getTime());
@@ -456,7 +457,7 @@ function daterange(t1, t2) {
  *
  * @returns {string}    asimuut (kraadides, ümardatud täisarvudeni), ilmakaare tähis (N, NE, E, ...) või mõlemad
  */
-function cardinal(a, mode = 'both') {
+export function cardinal(a, mode = 'both') {
   a = a - 360 * Math.floor(a / 360);
 
   if (mode == 'num') {
@@ -492,7 +493,7 @@ function cardinal(a, mode = 'both') {
  *
  * @returns {number} Refraktsiooniga korrigeeritud kõrgus
  */
-function refract(h, T = 10, P = 101) {
+export function refract(h, T = 10, P = 101) {
   if (h < -5.01) {
     return h;
   } else {
@@ -515,7 +516,7 @@ function refract(h, T = 10, P = 101) {
  *
  * @returns {string}            Kuu faasi nimetus
  */
-function moonphase(t1, t2 = null, loc = null) {
+export function moonphase(t1, t2 = null, loc = null) {
   let moonperiod_start, moonperiod_end, nextquarter;
 
   if (t2 == null) {
@@ -567,7 +568,7 @@ function moonphase(t1, t2 = null, loc = null) {
  *                          dist_c - kaugus täis- või rõngakujulise varjutuse servani vaatleja taevakeha pinnal (km, undefined, kui vaatleja asub vaadeldavate taevakehade vahel)
  *                          dist_p - kaugus osalise varjutuse servani vaatleja taevakeha pinnal (km, undefined, kui vaatleja asub vaadeldavate taevakehade vahel)
  */
-function syzygy(t, body1, body2, obsbody = 'Earth') {
+export function syzygy(t, body1, body2, obsbody = 'Earth') {
   // Target positions (au)
   const p1 = Astronomy.BackdatePosition(t, obsbody, body1, true),
     p2 = Astronomy.BackdatePosition(t, obsbody, body2, true);
@@ -764,7 +765,7 @@ function syzygy(t, body1, body2, obsbody = 'Earth') {
  *                          c1 - lähtetähtkuju (IAU lühend)
  *                          c2 - saabumistähtkuju (IAU lühend)
  */
-function constelchange(body, first = false, t1, t2 = Infinity, d = 0.125, dtol = 1e-4) {
+export function constelchange(body, first = false, t1, t2 = Infinity, d = 0.125, dtol = 1e-4) {
   let T1 = Astronomy.MakeTime(t1),
     T2 = null,
     v = Astronomy.GeoVector(body, T1, true),
@@ -826,7 +827,7 @@ function constelchange(body, first = false, t1, t2 = Infinity, d = 0.125, dtol =
  *
  * @returns {float}     Nurkkaugus kraadides vahemikus [0, 180]
  */
-function angdist(v1, v2, t = null) {
+export function angdist(v1, v2, t = null) {
   if (typeof v1 == 'string') {
     v1 = Astronomy.GeoVector(v1, t, true);
   } else if (Array.isArray(v1)) {
@@ -865,7 +866,7 @@ function angdist(v1, v2, t = null) {
  * @arg {Vector}        b
  * @returns {Vector}    a ja b vektorkorrutis, t on a.t ja b.t keskmine
  */
-function crossProduct(a, b) {
+export function crossProduct(a, b) {
   return new Astronomy.Vector(
     a.y * b.z - a.z * b.y,
     a.z * b.x - a.x * b.z,
@@ -900,8 +901,8 @@ function crossProduct(a, b) {
  *
  * @returns {float} Väljundvahemikku teisendatud väärtus
  */
-function interpolate(x, x0, x1, y0, y1, clip = false) {
-  y = ((y1 - y0) * (x - x0)) / (x1 - x0) + y0;
+export function interpolate(x, x0, x1, y0, y1, clip = false) {
+  var y = ((y1 - y0) * (x - x0)) / (x1 - x0) + y0;
   if (clip) {
     if (y1 > y0) {
       if (y > y1) return y1;
@@ -924,7 +925,7 @@ function interpolate(x, x0, x1, y0, y1, clip = false) {
  *
  * @returns {float} Parabooli tipu x-koordinaat (võib asuda etteantud punktide vahemikus või sellest väljas)
  */
-function parapeak_x(x, y) {
+export function parapeak_x(x, y) {
   const a = (y[1] - y[0]) * x[2],
     b = (y[0] - y[2]) * x[1],
     c = (y[2] - y[1]) * x[0];
@@ -942,7 +943,7 @@ function parapeak_x(x, y) {
  *
  * @returns {float} Piiratud väärtus
  */
-function clamp(v, min, max) {
+export function clamp(v, min, max) {
   return Math.max(min, Math.min(v, max));
 }
 
@@ -970,7 +971,7 @@ function clamp(v, min, max) {
  *
  * @returns {AstroTime | AstroTime[]}   Leitud ajahetked, kui res_first, siis üks aeg, muidu aegade list
  */
-function timesearch(
+export function timesearch(
   f,
   T1,
   T2,
@@ -1031,7 +1032,7 @@ function timesearch(
         factor = 1; // dt vähendamise tegur
 
       do {
-        tc = Astronomy.MakeTime(
+        var tc = Astronomy.MakeTime(
           parapeak_x(
             c.t.map((value) => value.ut),
             c.f

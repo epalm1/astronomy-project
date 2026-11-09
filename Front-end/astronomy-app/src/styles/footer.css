@@ -1,12 +1,15 @@
 .site-footer {
   /*background-color: #6d7cde;*/
-  position: fixed;
+  display: flex;
+  flex-direction: row;
+  position: sticky;
   left: 4%;
   bottom: 2%;
   text-align: left;
   width: 100%;
   background-color: #6d7cde;
   color: white;
+  margin-top: auto;
 }
 
 @media (prefers-color-scheme: dark) {

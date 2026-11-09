@@ -1,0 +1,181 @@
+:root {
+    --textcolor: #888;
+    --hovercolor: #00ccff88;
+    --bgcolor: #00ccff22;
+}
+
+.astronomyCalendar {
+    font-family: 'Roboto', sans-serif;
+    color: var(--textcolor);
+    box-sizing: border-box;
+    width: 30%;
+    left:3%;
+}
+
+.astronomyCalendar * {
+    box-sizing: border-box;
+}
+
+.nobr {
+    white-space: nowrap;
+}
+
+.astronomyCalendar li {
+    margin-top: 5px;
+}
+
+/* Hover and Action Elements */
+.hoverblock,
+.hoverblockText {
+    background-color: var(--bgcolor);
+}
+
+.hoverblock:hover {
+    background-color: var(--hovercolor) !important;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.hoverblockText:hover {
+    background-color: var(--hovercolor);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.hoverblock:active,
+.hoverblockText:active,
+.astronomyCalendar select:active,
+.astronomyCalendar input:active {
+    filter: brightness(200%);
+}
+
+.astronomyCalendar select,
+.astronomyCalendar input[type="number"],
+.astronomyCalendar input[type="checkbox"] {
+    background-color: transparent;
+    border: none;
+    vertical-align: middle;
+    margin: 1px 1px 2px 2px;
+    padding: 0px;
+}
+
+.astronomyCalendar select:hover,
+.astronomyCalendar input[type="number"]:hover {
+    background-color: var(--hovercolor);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Table styling */
+.calMain {
+    border-collapse: separate;
+    border-spacing: 0px;
+    margin: 0px auto;
+}
+
+.calMain td,
+.calMain th {
+    padding: 0px;
+}
+
+.inmonth {
+    background-color: transparent;
+    border: 1px solid var(--bgcolor);
+}
+
+.holiday {
+    color: #f00;
+}
+
+.weekend {
+    background-color: #66666622;
+}
+
+.today {
+    border: 1px solid #f00;
+    font-weight: bold;
+}
+
+.clicked {
+    border: 1px solid #666 !important;
+    background-color: #ffff0044;
+}
+
+/* Loading animation */
+.loaderContainer {
+    height: 250px;
+    position: relative;
+    top: -250px;
+    background-color: #ffffffaa;
+}
+
+.loader {
+    border: 10px solid var(--textcolor);
+    border-top: 10px solid var(--textcolor);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin: 30px auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.eventline {
+    display: block;
+    margin-left: -1px;
+    margin-right: -1px;
+}
+
+.calWarning {
+    padding: 5px 10px;
+    margin: 0px auto;
+    font-size: smaller;
+    background-color: var(--bgcolor);
+}
+
+.calSettingsToggle {
+    padding: 5px 10px;
+    margin: 0px auto;
+    font-size: smaller;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.calSettings {
+    padding: 10px;
+    border: 10px solid var(--bgcolor);
+    border-top: 5px solid var(--bgcolor);
+    border-radius: 0px 0px 20px 20px;
+    margin: 0px auto;
+    overflow: auto;
+    font-size: smaller;
+    line-height: 18px;
+}
+
+.calDayEvents {
+    padding: 10px;
+    border: 10px solid var(--bgcolor);
+    border-top: 5px solid var(--bgcolor);
+    border-radius: 0px 0px 20px 20px;
+    margin: 0px auto;
+    overflow: auto;
+}
+
+.calDayEventsHeader {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}

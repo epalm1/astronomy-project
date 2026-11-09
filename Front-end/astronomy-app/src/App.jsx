@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Footer from './components/Footer.jsx';
-
+import Calendar from './components/Calendar.jsx';
 import EclipsesPage from './components/Navbar/hobiastronoomia/efemeriidid/eclipses.jsx';
 import QuadraturesPage from './components/Navbar/hobiastronoomia/efemeriidid/quadratures.jsx';
 
@@ -28,8 +28,12 @@ function App() {
             <Route path="/eclipses" element={<EclipsesPage />} />
           </Routes>
         </main>
-
-        <Footer />
+        <div className="calendar">
+          <Calendar />
+        </div>
+        <div>
+          <Footer />
+        </div>
       </div>
     </BrowserRouter>
   );

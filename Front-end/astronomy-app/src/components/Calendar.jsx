@@ -2,10 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import * as Astronomy from 'astronomy-engine';
 import '../styles/calendar.css';
 
-
 // Replace with your actual common.js helper functions
-import { clamp, datestring, daterange, syzygy, constelchange, timesearch,
-} from './common';
+import { clamp, datestring, daterange, syzygy, constelchange, timesearch } from './common';
 
 // function clamp(v, min, max) {
 //   return Math.max(min, Math.min(v, max));
@@ -391,7 +389,8 @@ function Calendar() {
             <th
               className="hoverblock"
               style={{ borderTopLeftRadius: '20px' }}
-              onClick={handlePrevMonth}>
+              onClick={handlePrevMonth}
+            >
               <svg width="10" height="16">
                 <polygon points="10,0 10,15 0,8" style={{ fill: 'var(--textcolor)' }} />
               </svg>
@@ -415,7 +414,8 @@ function Calendar() {
               <select
                 value={currentMonth}
                 onChange={(e) => setCurrentMonth(Number(e.target.value))}
-                style={{ fontSize: 'medium', fontWeight: 'bold' }}>
+                style={{ fontSize: 'medium', fontWeight: 'bold' }}
+              >
                 <option value={0}>jaanuar</option>
                 <option value={1}>veebruar</option>
                 <option value={2}>märts</option>
@@ -434,7 +434,8 @@ function Calendar() {
             <th
               className="hoverblock"
               style={{ borderTopRightRadius: '20px' }}
-              onClick={handleNextMonth}>
+              onClick={handleNextMonth}
+            >
               <svg width="10" height="16">
                 <polygon points="0,0 0,15 10,8" style={{ fill: 'var(--textcolor)' }} />
               </svg>
@@ -468,7 +469,8 @@ function Calendar() {
                     <td
                       key={cIdx}
                       className={classes.join(' ')}
-                      onClick={() => handleDayClick(cell)}>
+                      onClick={() => handleDayClick(cell)}
+                    >
                       {cell.label}
                     </td>
                   );
@@ -503,7 +505,8 @@ function Calendar() {
               marginBottom: '10px',
               fontSize: 'initial',
               fontWeight: 'bold'
-            }}>
+            }}
+          >
             Sündmuste filtrid{' '}
             <a href="#" className="nobr" style={{ fontSize: 'smaller' }}>
               (info ja juhend)
@@ -687,7 +690,8 @@ function Calendar() {
               marginTop: '15px',
               fontSize: 'initial',
               fontWeight: 'bold'
-            }}>
+            }}
+          >
             Sündmuste seaded
           </span>
           <br />
@@ -697,7 +701,8 @@ function Calendar() {
             <select
               value={eventFilter.moonphasetype}
               style={{ margin: '0px', verticalAlign: 'baseline' }}
-              onChange={(e) => handleFilterChange('moonphasetype', e.target.value)}>
+              onChange={(e) => handleFilterChange('moonphasetype', e.target.value)}
+            >
               <option value="ecl">ekliptiliselt</option>
               <option value="geom">geomeetriliselt</option>
             </select>
@@ -709,7 +714,8 @@ function Calendar() {
             <select
               value={eventFilter.oppcontype}
               style={{ margin: '0px', verticalAlign: 'baseline' }}
-              onChange={(e) => handleFilterChange('oppcontype', e.target.value)}>
+              onChange={(e) => handleFilterChange('oppcontype', e.target.value)}
+            >
               <option value="ecl">ekliptiliselt</option>
               <option value="geom">geomeetriliselt</option>
             </select>
@@ -754,7 +760,8 @@ function Calendar() {
               marginTop: '15px',
               fontSize: 'initial',
               fontWeight: 'bold'
-            }}>
+            }}
+          >
             Planeetide filter
           </span>
           <br />

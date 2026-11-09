@@ -112,7 +112,8 @@ function Navbar() {
                   e.stopPropagation(); // Hoiab ära ülemise menüü sulgumise
                   setEphemerisOpen(!ephemerisOpen);
                 }}
-                className="dropdown-sub-btn">
+                className="dropdown-sub-btn"
+              >
                 Efemeriidid ▾
               </button>
 

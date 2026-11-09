@@ -7,8 +7,8 @@ import Calendar from './components/Calendar.jsx';
 import EclipsesPage from './components/Navbar/hobiastronoomia/efemeriidid/eclipses.jsx';
 import QuadraturesPage from './components/Navbar/hobiastronoomia/efemeriidid/quadratures.jsx';
 import RetrogradesPage from './components/Navbar/hobiastronoomia/efemeriidid/retrogrades.jsx';
-import ConjunctionsPage from "./components/Navbar/hobiastronoomia/efemeriidid/conjunctions.jsx";
-import ConstellationsPage from "./components/Navbar/hobiastronoomia/efemeriidid/constellations.jsx";
+import ConjunctionsPage from './components/Navbar/hobiastronoomia/efemeriidid/conjunctions.jsx';
+import ConstellationsPage from './components/Navbar/hobiastronoomia/efemeriidid/constellations.jsx';
 // import ConjunctionsPage from "./components/Navbar/hobiastronoomia/efemeriidid/conjunctions.jsx";
 
 function App() {
